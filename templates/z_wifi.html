@@ -1,0 +1,41 @@
+{% extends 'inherit.html' %}
+{% load static %}
+
+{% block head %}
+    <meta name="{{ name }}" content="{{ description }}">
+    <title>{{ title }}</title>
+{% endblock %}
+
+
+{% block body %}
+    {% include 'inc/navbar.html'%}
+
+{#  wrapping div  #}
+    <div>
+        <div>
+            youtube video
+        </div>
+        <div class="container">
+            <p>Ziegal is ready to boost the UK's global internet ranking, and provide all UK citizens with a low cost, fibre optic internet connectivity for both fixed line broadband and mobile data</p>
+            <p>Combining years of research and development Z-WiFi is ready to deploy our real time pilot, revolutionizing the way we connect to the internet. With the ability to quickly reach the whole of the UK, including the most remote locations and hard to reach areas with extremely high installation costs from current fibre optic providers.</p>
+            <p>Z-WiFi will be a stable, affordable, flexible and completely mobile internet connection, offering users free trials and no long contracts. It has the potential to replace both mobile data and home broadband as we know it. Designed to cater to growing needs and advancing technology, Z-WiFi is the internet connection of the future.</p>
+            <p>Why does this UK need another internet provider?</p>
+            <p>Right now, the majority of the UK has two ways to connect internet, fixed line or cellular and 75% of the UK is connected via copper cable. The market is flooded with service providers that have rebranded under this same infrastructure, but this does not deal with the rising demand for more bandwidth.</p>
+            <p>The Z-WiFi network will provide sufficient low cost internet access to all users and more Bandwidth means your family can use all there devices at the same time without causing congestion.</p>
+            <p>Z-WiFi will supply digital connectivity for all devices i.e computers, laptops, smartphones, cars, drones, buildings, infrastructure and all IoT applications basically anything with a WiFi connection.</p>
+            <p>Future proof network with speeds up to 9.5Gbs.</p>
+            <p>Symmetrical upload and download speeds.</p>
+            <p>Instant Access, No Installation.</p>
+            <p>Low power consumption, it will prove to be better for the environment.</p>
+            <p>Fast national deployment.</p>
+        </div>
+    </div>
+
+
+    {% include 'inc/footer.html' %}
+{% endblock %}
+
+
+{% block script %}
+
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends 'inherit.html' %}
+{% load static %}
+{% block head %}
+    <meta name="{{ name }}" content="{{ description }}">
+    <title>{{ title }}</title>
+{% endblock %}
+
+{% block body %}
+
+    {% include 'inc/navbar.html' %}
+
+    {#  wrapping div  #}
+    <div class="container my-5">
+        
+        {#   img div     #}
+        <div class="text-center my-4">
+            <img src="{% static 'imgs/monthly1.PNG' %}" alt="5G monthly deals">
+        </div>
+
+        {#  text div  #}
+        <div class="my-4 text-center">
+            <h2>ARE YOU PAYING TOO MUCH FOR YOUR MOBILE PHONE DEAL?</h2>
+            <p>Regardless of how much you are currently paying for your mobile phone deal, there’s an extremely high chance that you’re paying too much. This could be for a number of reasons, perhaps you opted for the first deal that you were offered or you didn't take the time to shop around for a cheaper option. In fact, a lot of people find themselves paying too much for their mobile phone because the cost of their monthly contract has gradually increased over the years. With changing a contract often being seen as confusing, a lot of people just accept the rate that they’re paying. However, this doesn’t need to be the case.</p>
+            <p>If you are paying too much for your mobile phone deal, there are other options available. These options are more affordable and very easy to set up. All you need to do is choose one of the great monthly deals here at Ziegal and register your SIM with EE, Giffgaff, Vodafone or 3 mobile.</p>
+            <p>We have selected some great pay monthly deals with some of the best mobile phones available to suit all budgets, monthly network operator deals from EE, Giffgaff, Vodafone and 3 Mobile to help save you money.</p>
+            <p>Click the deals below for the Pay Monthly deals available from EE or Register for your Sim and transfer your existing mobile number.</p>
+            <img class="w-100" src="{% static 'imgs/monthly2.PNG' %}" alt="EE Deals">
+            <p>Ziegal likes to keep it simple just buy the mobile phone you want and register your details with the network operator that provides you the best signal in your area. You can buy latest GM9 Pro from us for just £149 and Buy above EE package with rolling contract of 24 months to enjoy 160 GB, Unlimited Calls and Texts for just £20/month. Our Gm9 pro is also unlocked and Sim Free meaning you can switch your network at any time.</p>
+            <img src="{% static 'imgs/monthly3.PNG' %}" alt="GM9 pro mobile">
+            <img class="w-100" src="{% static 'imgs/monthly4.PNG' %}" alt="EE Deals">
+            <img class="w-100" src="{% static 'imgs/monthly5.PNG' %}" alt="EE deals">
+            <p class="my-4">Another advantage of buying pay monthly deals is that you can buy latest mobile phones with only paying a small amount for a contract period of 12 months to 36 months. If you are looking to buy latest iphone 12 pro max than best deal is provided by EE. Iphone 12 pro max is newest iphone released by apple. With paying an upfront price of £50 and monthly £77 you can enjoy 100 GB internet and unlimited calls and text messages.</p>
+
+            {#    enwrapping img div        #}
+            <div style="background-color: whitesmoke">
+                <img src="{% static 'imgs/monthly6.PNG' %}" alt="">
+            </div>
+            <img class="w-100" src="{% static 'imgs/monthly7.PNG' %}" alt="">
+            <p class="my-5">If you are looking for affordable mobile phones than Samsung A41s pay monthly phone deal from Giffgaff with a rolling contract of 24 months is one of best available deals. You have to pay a upfront price of £25 and monthly £10.76 for mobile phone and minimum £6 to get 500 MB internet and unlimited calls and text messages. You can also select any goodybag from below.</p>
+            <img  src="{% static 'imgs/monthly8.PNG' %}" alt="">
+            <img  src="{% static 'imgs/monthly9.PNG' %}" alt="">
+            <p>You can also buy any goodybag which suits your requirement and instead of buying Samsung A41s you can buy our latest Gm20Pro with advance configuration for just one time payment of £199. This amount can also be paid in 3 easy instalments when you buy through KLARNA. Gm20 Pro is also unlocked and Sim Free mobile phone.</p>
+        </div>
+
+    {#  text and img div  #}
+        <div class="text-center my-4">
+            <h2>When selecting your pay monthly phones deal always consider the full cost over the term of the contract.</h2>
+            <p>How much will it cost over 12 Months ?</p>
+            <p>Some Typical Examples:</p>
+            <p> £7.50 over 12 Months is £90 Plus the cost of the mobile phone £99 = £189</p>
+            <p>£12 over 12 Months is £144 Plus the cost of the mobile phone £129 = £273</p>
+            <p>£20 over 12 Months is £240 Plus the cost of the mobile phone £299 = £539</p>
+            <h2>What happens if I want to change my mobile phone before the contract is finished</h2>
+            <p>The good news with Ziegal you can upgrade your mobile phone whenever you want and you will also qualify for further discount when you upgrade with us.</p>
+        </div>
+
+        {#  video div  #}
+        <div>
+            video div
+        </div>
+
+        {#  text video  #}
+        <div class="text-center">
+            <p>If you are an Android lover than Google Pixel 4a comes with all the features you can imagine. One of best deal for Google Pixel 4a 5G is offered by Vodafone having 24 month contract.</p>
+            <img class="w-100" src="{% static 'imgs/monthly10.PNG' %}" alt="Google Pixel 4a 5G">
+            <p class="my-4">You can enjoy Google Pixel 4a along 100 GB of internet with unlimited calls and texts for an upfront cost of £29 and Monthly payment of £35 for contract period of 24 months.</p>
+            <img class="w-100" src="{% static 'imgs/monthly11.PNG' %}" alt="">
+            <p>Click the deals below for the Pay Monthly deals available from Vodafone or Register for your Sim and transfer your existing mobile number. </p>
+            <img class="w-100" src="{% static 'imgs/monthly12.PNG' %}" alt="">
+            <p>All our mobile phones can be combined with any pay monthly contract deal with any network provider of your choice.</p>
+            <h2>Ziegal Mobile Phone Deals Vs. Other Providers</h2>
+           <p>A simple Google search will provide you with a number of mobile phone deals, though these are not always the cheapest options. You may assume that some of the UK’s top mobile phone providers will be offering affordable contracts, especially as they often market themselves as beating the price of others. However, this isn’t the case. In fact, Ziegal mobile phone deals are a lot cheaper.</p>
+            <p>One of our most popular mobile phone deals is the £20 a month contract with EE. Boasting 160GB of data, unlimited texts and unlimited minutes it’s a plan that takes care of everything. However, this isn’t something that every provider will offer. For example, Giffgaff charge £20 for the 80 GB and Unlimited call and Texts.</p>
+            <img class="w-100" src="{% static 'imgs/monthly13.PNG' %}" alt="">
+            <p>Click the deals below for the Pay Monthly deals available from 3 Mobile or Register for your Sim and transfer your existing mobile number.</p>
+            <img class="w-100" src="{% static 'imgs/monthly14.PNG' %}" alt="">
+            <img class="w-100" src="{% static 'imgs/monthly15.PNG' %}" alt="">
+            <h2>What are Pay Monthly Mobile Phone Deals ?</h2>
+            <p>We have found the best monthly paid mobile phone deals to save you time because we believe time is important and we don't want to waste yours surfing the net to find the best monthly mobile phone deals.  Each month you pay a set amount of money and in return you get a set amount of minutes, text messages and data.  Normally you have to make a commitment to the pay monthly deals that can be 12 month contracts or 30 Day rolling contracts.</p>
+            <h2>What are the Benefits of a Pay Monthly contract ?</h2>
+            <p>Its convenient and can be very affordable allowing you to take control of your monthly mobile spend. For example EE have become very popular for the simplicity of their mobile phone contracts, and their very competitive prices, the cheapest EE tariff costs only £13 this allows you to control your spending.</p>
+            <p>With Pay Monthly contracts you can get your hands on the most recent mobile phones to start with, before Pay As You Go clients, EE, Vodafone and 3 Mobile contracts offer some great packages for a small upfront cost towards the handset.</p>
+            <h2>How does a pay monthly mobile phone contract work ?</h2>
+            <p>You can select either a 24 month contract such as EE, 3 Mobile and Vodafone or a 18 month rolling contract such as EE via sites such as Ziegal. You will be charged a set fee each month to cover the expense for Line rental, minutes, Data and text messages.</p>
+            <h2>What network operator should I select ?</h2>
+            <p>You should check the signal in your area, operators such as EE or 3 Mobile offer coverage checkers on their websites to see what sort of reception you could receive, its important to do this to check your user-ability.  Its pointless using a network that is not covered in your area and can be costly if you are tied into a contract for 12 months, remember to also check the areas you travel or commute too, Vodafone could be good where you live but EE or 3 Mobile could be better where you work or there may be another operator who has a better average coverage over both locations. We prefer EE as it has best internet speed and largest coverage area.</p>
+            <img class="w-100" src="{% static 'imgs/monthly16.PNG' %}" alt="">
+            <h2>What is the eligibility for a pay monthly mobile phone deal ?</h2>
+            <p>The majority of network operators such as EE, Vodafone, Giffgaff and 3 Mobile require a contract of 24 Months/18 Months/12 Months.</p>
+            <p>There will be a minimum age restriction for 12 month contracts such as EE, 3 Mobile and Vodafone of 18 years old or older. However the monthly contract could be issued in an adults name such as a parent but the mobile phone could be used by the child, so a parent can purchase a contract for their child, and there is no restriction to who can use the mobile phone, data and calls. </p>
+            <p>Your chosen network operator will also perform a credit check if the agreement is 12 months or more. This is generally not required for 30 day rolling contracts such as EE.</p>
+            <p>You will need to be a resident of the United Kingdom and the network operator will require address history no less than 3 years for the purpose of the credit check to be performed.</p>
+        </div>
+
+
+    </div>
+
+    {% include 'inc/footer.html' %}
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

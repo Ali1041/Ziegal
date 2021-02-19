@@ -1,0 +1,136 @@
+{% extends 'inherit.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+
+
+    {% include 'inc/navbar.html' %}
+{#  wrapping div  #}
+    <div class="container">
+        <div class="row m-0  my-5">
+
+        {#  for cover img  #}
+        <div style="width: 40%;" class="col-lg-6">
+            {% for item in detail.product_img.all %}
+                {% ifequal forloop.counter 1 %}
+                    <img src="{{ item.get_photo_url }}" height="200px" id="cover_img" class="w-100 img" alt="{{ item.color }}">
+
+                {% endifequal %}
+
+
+
+    {#  for list fo img  #}
+                        <img src="{{ item.get_photo_url }}" onclick="change_img(event)" height="50px" width="50px" style="cursor:pointer;" class="my-2 img" alt="{{ item.color }}">
+            {% endfor %}
+        </div>
+
+    {#  text/info div  #}
+        <div class="col-lg-6">
+            <div>
+                <h2>{{ detail.name }}</h2>
+                <p>{{ detail.price }}</p>
+                <p>VAT included. Free UK Delivery</p>
+                <p>Hurry! Only {{ detail.stock }} left in stock!</p>
+                <div class="p-3 border my-2">
+                    <p class="px-3 py-1 m-0" style="background-color: pink;display: inline-block;border-radius: 6px;font-weight: 700">Klarna.</p>
+                    <p style="display: inline-block" class="m-0">Make 3 payments of £66.33. No fees</p>
+                    <a href="" class="default_a">Learn more</a>
+
+                </div>
+                <h4 id="color">Color: </h4>
+                    <input type="submit" onclick="operation(event)" class="btn btn-dark" value="-">
+                    <input type="number" id="qty" class="form-control-cart" value="1">
+                    <input type="submit" onclick="operation(event)" class="btn btn-dark" value="+">
+                    <button onclick="add_to_cart(event,{{ detail.pk }})" class="btn btn-dark">ADD TO CART</button>
+            </div>
+        </div>
+
+    </div>
+
+        <div class="text-center">
+            <h2>Description</h2>
+            <p>{{ detail.features|safe }}</p>
+        </div>
+        <div>
+            <h2>Reviews</h2>
+{#            {% for item in review %}#}
+{#            <p>{{ item.user.username }}</p>#}
+{#            <p>{{ item.comment }}</p>#}
+{#            <p>{{ item.rating }}</p>#}
+{#            {% endfor %}#}
+        </div>
+    </div>
+
+    <div style="position: fixed;bottom: -10%;left: 45%;transition: all 0.7s ease-in-out" class="text-white" id="sign">
+        <p class="bg-dark px-2 p-1 " style="border-radius: 6px">Added to cart!</p>
+    </div>
+    {% include 'inc/footer.html' %}
+
+{% endblock %}
+
+<script>
+{% block script %}
+    const imgs = document.getElementsByClassName('img')
+    const p = document.getElementById('color')
+
+    for (let i=1;i<imgs.length;i++) {
+        if (imgs[0].src === imgs[i].src) {
+            imgs[i].style.border = '1px solid black'
+            p.innerHTML = `Color: ${imgs[i].alt}`
+        }
+    }
+       function change_img(e){
+
+        const cover = document.getElementById('cover_img')
+        cover.src = e.target.src
+        for (let i=1;i<imgs.length;i++) {
+            imgs[i].style.border = 'none'
+
+    }
+        e.target.style.border = '1px solid black'
+        p.innerHTML = `Color: ${e.target.alt}`
+
+    }
+
+
+    function operation(e){
+        if (e.target.value === '-') {
+            if (parseInt(e.target.nextElementSibling.value) === 1) {
+                e.target.nextElementSibling.value = 1
+            } else {
+                e.target.nextElementSibling.value = parseInt(e.target.nextElementSibling.value) - 1
+            }
+        }
+        else if (e.target.value === '+'){
+            e.target.previousElementSibling.value = parseInt(e.target.previousElementSibling.value) +1
+        }
+    }
+
+    function add_to_cart(e,pk){
+        const qty = document.getElementById('qty').value
+        const sign = document.getElementById('sign')
+        const color = p.innerText.split(':')
+        const base_url = location.origin
+        fetch(`${base_url}/add-to-cart/${pk}/${qty}/${color[1]}/`)
+        .then((res)=>{
+            return res.json()
+        })
+        .then((result)=>{
+            if (result.added === 'redirect'){
+                location.replace(`${base_url}/login/`)
+            }
+            else {
+                sign.style.bottom = 10 + '%'
+                setTimeout(() => {
+                    sign.style.bottom = -10 + '%'
+                }, 1500)
+                count()
+            }
+        })
+
+    }
+{% endblock %}
+</script>

@@ -1,0 +1,30 @@
+{% extends 'adminPanel/admin_home.html' %}
+
+{% block content %}
+    
+    {# wrapper div   #}
+    <div class="my-3">
+
+
+        {#    buttons div    #}
+        <div class="container my-2">
+            <a href="{% url 'adminPanel:blog-list' %}" class="btn btn-secondary">Back</a>
+            <a href="{% url 'adminPanel:blog-edit' 'Edit' detail.pk %}" class="btn btn-dark">Edit</a>
+        </div>
+
+        {#    image div        #}
+        <div style="width: 82%;margin: auto">
+            <img src="{{ detail.get_photo_url }}" width="100%" height="500px" alt="">
+        </div>
+
+
+        {#   blog content div     #}
+
+        <div class="container my-2">
+            <h3>{{ detail.title }}</h3>
+            <small>{{ detail.date }}</small>
+            <p>{{ detail.text|safe }}</p>
+        </div>
+    </div>
+    
+{% endblock %}

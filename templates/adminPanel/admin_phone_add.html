@@ -1,0 +1,104 @@
+{% extends 'adminPanel/admin_home.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+    {% if not product %}
+    {#  wrapping div  #}
+    <div class="border border-rounded p-5 my-3" style="width: fit-content;margin: auto">
+
+        <form id="form" action="{% url 'adminPanel:add-mobiles' category %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h4 class="text-center">Add Product</h4>
+            {{ form.as_p }}
+            {{ form.media }}
+            <div id="img">
+                <label for="" class="d-block">
+                    Image
+                    <input type="file" name="image" class="my-2">
+                </label>
+                <label for="" class="d-block">
+                    Color
+                    <input type="text" name="color" class="form-control">
+                </label>
+            </div>
+            <a onclick="add(event)" class="btn btn-success my-2">+Add Image and color</a>
+            <button class="btn btn-dark w-100">Submit</button>
+        </form>
+
+    </div>
+
+     {% else %}
+    <div class="border border-rounded p-5 my-3" style="width: fit-content;margin: auto">
+
+        <form id="form" action="{% url 'adminPanel:edit-product' category product.pk %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h4 class="text-center">Add Product</h4>
+            {{ form.as_p }}
+            {{ form.media }}
+            <div id="img">
+               {% for item in product.product_img.all %}
+                 <label for="" class="d-block">
+                    Image
+                    <input type="file" id="ip" name="image"  class="my-2">
+                    <p >{{ item.get_photo_url }}</p>
+                 </label>
+                <label for="" class="d-block">
+                    Color
+                    <input type="text" name="color" value="{{ item.color }}" class="form-control">
+                </label>
+
+                {% endfor %}
+            </div>
+            <a onclick="add(event)" class="btn btn-success my-2">+Add Image and color</a>
+            <button class="btn btn-dark w-100">Submit</button>
+        </form>
+
+    </div>
+
+    {% endif %}
+
+    <script>
+        const form = document.getElementsByTagName('input')
+        const select = document.getElementsByTagName('select')
+        select[0].setAttribute('class','form-control')
+        for (let i=1;i<form.length-2;i++){
+            console.log(form[i])
+            form[i].setAttribute('class','form-control')
+
+        }
+
+    {#  Onclick event handler  #}
+        function add(e){
+            const div = document.getElementById('img')
+            for (let i=0;i<=1;i++){
+                const label = document.createElement('label')
+                const input = document.createElement('input')
+                label.setAttribute('class','d-block')
+                if (i===0){
+                    label.innerHTML = 'Image'
+                    input.setAttribute('name','image')
+                    input.setAttribute('type','file')
+                }
+                else{
+                    label.innerHTML = 'Color'
+                    input.setAttribute('class','form-control')
+
+                    input.setAttribute('name','color')
+                    input.setAttribute('type','text')                }
+                label.append(input)
+            div.append(label)
+            }
+
+
+
+        }
+
+
+    {#  THe file prepopulating handle  #}
+    {#    let val = `{{ item.get_photo_url }}`#}
+    {# const ip = document.getElementById('ip')#}
+    {# ip.setAttribute('value',val)#}
+    {# console.log(ip,val)#}
+    </script>
+
+{% endblock %}

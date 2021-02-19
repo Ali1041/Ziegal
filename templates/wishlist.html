@@ -1,0 +1,62 @@
+{% extends 'inherit.html' %}
+
+{% block body %}
+    {% include 'inc/navbar.html' %}
+
+    {#  wrapping div  #}
+    <div class="container my-5">
+        <h2>Your Wishlist</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Details</th>
+                    <th>Add to cart</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in list %}
+                    <tr>
+                        <td>{{ item.item.name }}</td>
+                        <td>{{ item.item.category }}</td>
+                        <td><a href="{% url 'detail-online-shop' item.item.pk %}" class="btn btn-secondary">Details</a></td>
+                        <td><a style=""
+                                onclick="to_cart(event,{{ item.item.pk }})" class="my-btn default_a py-1 px-2">+Add to cart</a></td>
+                    </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+
+    <div style="position: fixed;bottom: -10%;left: 45%;transition: all 0.7s ease-in-out" class="text-white" id="sign">
+        <p class="bg-dark px-2 p-1 " style="border-radius: 6px">Added to cart!</p>
+    </div>
+    {% include 'inc/footer.html' %}
+{% endblock %}
+
+
+<script>
+{% block script %}
+    function to_cart(e,pk){
+        const sign = document.getElementById('sign')
+        console.log(base_url)
+        fetch(`${base_url}/add-to-cart/${pk}/1/none/`)
+        .then((res)=>{
+            return res.json()
+        })
+        .then((result)=>{
+            sign.style.bottom = 10+'%'
+            setTimeout(()=>{
+                sign.style.bottom = -10+'%'
+            },1500)
+        })
+    }
+
+
+
+{% endblock %}
+</script>

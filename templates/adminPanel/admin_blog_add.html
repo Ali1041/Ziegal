@@ -1,0 +1,48 @@
+{% extends 'adminPanel/admin_home.html' %}
+{% block content %}
+
+
+    {% if not blog %}
+        <div class="text-center my-2">
+            <a href="{% url 'adminPanel:blog-list' %}" class="btn btn-secondary">Back</a>
+        </div>
+
+    {#  wrapping div  #}
+    <div class="border border-rounded p-5 my-3" style="width: fit-content;margin: auto">
+
+        <form id="form" action="{% url 'adminPanel:blog-add' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h4 class="text-center">Add Blog</h4>
+            {{ form.as_p }}
+            {{ form.media }}
+            <button class="btn btn-dark w-100">Submit</button>
+        </form>
+
+    </div>
+
+    {% else %}
+
+        <div class="text-center my-2">
+            <a class="btn btn-secondary" href="{% url 'adminPanel:blog-detail' blog.pk %}">Back</a>
+        </div>
+
+{#   edit form     #}
+    <div class="border border-rounded p-5 my-3" style="width: fit-content;margin: auto">
+
+        <form id="form" action="{% url 'adminPanel:blog-edit' 'Edit' blog.pk %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h4 class="text-center">Add Blog</h4>
+            {{ form.as_p }}
+            {{ form.media }}
+            <button class="btn btn-dark w-100">Submit</button>
+        </form>
+
+    </div>
+
+    {% endif %}
+    <script>
+        const form = document.getElementsByTagName('input')
+        form[1].setAttribute('class','form-control')
+    </script>
+
+{% endblock %}

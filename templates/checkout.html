@@ -1,0 +1,22 @@
+{% extends 'inherit.html' %}
+{% load bootstrap4 %}
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+    {% include 'inc/navbar.html' %}
+    <div class="p-5 border my-4" style="width: 40%;margin: auto">
+        <form action="{% url 'checkout' %}" method="POST">
+            {% csrf_token %}
+            <h2 class="text-center">Checkout</h2>
+            {% bootstrap_form form %}
+            <button class="btn btn-dark w-100">Submit</button>
+        </form>
+    </div>
+    {% include 'inc/footer.html' %}
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

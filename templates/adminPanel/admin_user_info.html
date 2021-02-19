@@ -1,0 +1,26 @@
+{% extends 'adminPanel/admin_home.html' %}
+
+{% block content %}
+
+    {#  wrapper div  #}
+    <div class="container my-3">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>IP Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in list %}
+                    <tr>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.IP }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+{% endblock %}

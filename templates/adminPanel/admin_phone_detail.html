@@ -1,0 +1,56 @@
+{% extends 'adminPanel/admin_home.html' %}
+
+{% block content %}
+
+    {#  Wrapper div  #}
+    <div class="my-3">
+    <div class="container text-center">
+        <a href="{% url 'adminPanel:admin-mobiles' category %}" class="btn btn-secondary my-2">Back</a>
+        <a href="{% url 'adminPanel:edit-product' category detail.pk %}" class="btn btn-dark">Edit</a>
+    </div>
+        {#  Images div  #}
+        <div id="carouselExampleControls" style="width: 80%;margin: auto" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+              {% for item in detail.product_img.all %}
+                  {{ item.get_photo_url }}
+            <div class="carousel-item get" >
+              <img class="d-block w-100" height="600px" src="{{ item.get_photo_url }}" alt="First slide">
+            </div>
+              {% endfor %}
+
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+</div>
+    {#  inner div bg  #}
+        <div class="text-white bg-dark shadow-lg p-3 my-3" style="width: 60%;margin: auto;border-radius: 6px">
+
+            {#    flex div        #}
+            <div class=" d-flex justify-content-between">
+                <p>Name: {{ detail.name }}</p>
+                <p>Stock: {{ detail.stock }}</p>
+                <p>Category: {{ detail.category }}</p>
+            </div>
+
+            {#    feature div          #}
+            <div >
+                <p>{{ detail.features|safe }}</p>
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+    <script>
+        const imgs = document.getElementsByClassName('get')
+        imgs[0].classList.add('active')
+    </script>
+{% endblock %}

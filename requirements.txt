@@ -1,0 +1,11 @@
+asgiref==3.3.1
+beautifulsoup4==4.9.3
+Django==3.1.4
+django-bootstrap4==2.3.1
+django-ckeditor==6.0.0
+django-debug-toolbar==3.2
+django-js-asset==1.2.2
+Pillow==8.0.1
+pytz==2020.5
+soupsieve==2.1
+sqlparse==0.4.1

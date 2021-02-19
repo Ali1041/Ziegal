@@ -1,0 +1,33 @@
+{% extends 'adminPanel/admin_home.html' %}
+
+{% block content %}
+
+    <div>
+        <div class="shadow border p-3 my-3  " style="width: 40%;margin: auto;border-radius: 6px">
+            <p><b>Name: </b>{{ detail.user.first_name }} {{ detail.user.last_name }}</p>
+            <p><b>Email: </b>{{ detail.user.email_address }}</p>
+            <p><b>Phone: </b>{{ detail.user.phone }}</p>
+            <p><b>Postcode: </b>{{ detail.user.postcode }}</p>
+            <p><b>Address: </b>{{ detail.user.door_number }} {{ detail.user.street_address }}</p>
+            <p><b>Country: </b>{{ detail.user.country }}</p>
+        </div>
+
+        {% for item in detail.carts.all %}
+            <div class="shadow border p-3 my-3" style="width: 40%;margin: auto;border-radius: 6px">
+                <p><b>Name: </b>{{ item.product.name }} </p>
+                <p><b>Category: </b>{{ item.product.category }}</p>
+                <p><b>Qty: </b>{{ item.qty }}</p>
+                {% if item.color %}
+                <p><b>Color: </b>{{ item.color }}</p>
+                {% endif %}
+            </div>
+
+
+
+        {% endfor %}
+
+    </div>
+
+
+
+{% endblock %}

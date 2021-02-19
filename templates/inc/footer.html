@@ -1,0 +1,102 @@
+{% extends 'inherit.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+    <div style="background-color: #f2f2f2" class="p-2">
+
+
+{#  Modal newsletter  #}
+    <div class="modal fade" id="newsletter">
+        <div class="modal-dialog modal-dialog-centered" >
+            <div class="modal-content bg-dark" style="border: 1px solid white">
+                <div class="modal-header text-white">
+                    <h4 id="info" class="text-center"></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {#  Newsletter div  #}
+
+    <div class="d-flex justify-content-around p-3 my-4" style="width: 55%;margin: auto">
+        <h2 class="m-0 align-self-center">JOIN OUR NEWSLETTER</h2>
+        {% csrf_token %}
+        <input type="email" name="email" placeholder="Email Address" class="form-control w-25">
+        <button class="btn btn-dark text-white" onclick="subscribe(event)" data-toggle="modal" data-target="#newsletter">SUBSCRIBE</button>
+    </div>
+
+    {#  all links  #}
+    <div class="row" style="width: 80%;margin: auto">
+
+        {#    Information div    #}
+        <div class="col-lg-4">
+            <h4>INFORMATION</h4>
+            <p><a href="" class="default_a">Contact Us</a></p>
+            <p><a href="" class="default_a">Ziegal Blog</a></p>
+            <p><a href="" class="default_a">Mission Statement</a></p>
+            <p><a href="" class="default_a">Privacy Policy</a></p>
+            <p><a href="" class="default_a">Terms and conditions</a></p>
+        </div>
+
+        {#   Menu div     #}
+        <div class="col-lg-4">
+            <h4>MENU</h4>
+            <p><a href="{% url 'dual-sims' %}" class="default_a">Dual Sim</a></p>
+            <p><a href="{% url 'online-shop' %}" class="default_a">Online Shop</a></p>
+            <p><a href="{% url 'monthly-deals' %}" class="default_a">Pay Monthly Deals</a></p>
+            <p><a href="{% url 'z-wifi' %}" class="default_a">Z-Wifi</a></p>
+            <p><a href="{% url 'broadband_deals' %}" class="default_a">Broadband Deals</a></p>
+        </div>
+
+        {#   Ziegal div     #}
+        <div class="col-lg-4">
+            <h4>ZIEGAL</h4>
+            <p><a href="" class="default_a">International House</a></p>
+            <p><a href="" class="default_a">Mosley Street,</a></p>
+            <p><a href="" class="default_a">Manchester M2 3HZ</a></p>
+            <p><b>Contact: </b><a href="tel +0800 211 8289" class="default_a">0800 211 8289</a></p>
+            <p><b>Email: </b><a href="" class="default_a">customer.service@ziegal.co.uk</a></p>
+        </div>
+
+
+
+
+    </div>
+        {#   copyright     #}
+    <hr/>
+    <div >
+        <p class="text-center">COPYRIGHT &copy; ZIEGAL</p>
+    </div>
+</div>
+
+{% endblock %}
+{% block script %}
+    const base_url = location.origin
+
+    function subscribe(e){
+            const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+            const email = e.target.previousElementSibling.value
+            const p = document.getElementById('info')
+            fetch(`${base_url}/newsletter/subscribe/`,{
+            method:'POST',
+            body:JSON.stringify({email}),
+
+            headers:{
+                'Content-Type':'application/json',
+                'X-CSRFToken':csrftoken
+            },})
+            .then((res)=>{
+                return res.json()
+            })
+            .then((result)=>{
+                p.innerHTML = result.msg
+
+            })
+
+
+
+    }
+{% endblock %}
