@@ -1,7 +1,7 @@
 {% extends 'inherit.html' %}
 {% load static %}
 
-{% block head %}
+{% block head2 %}
     <meta name="{{ name }}" content="{{ description }}">
     <title>{{ title }}</title>
 {% endblock %}
@@ -11,18 +11,41 @@
     {% include 'inc/navbar.html'%}
 
 {#  wrapping div  #}
-    <div>
+    <div class="my-5">
 
         {#  filter div  #}
-        <div></div>
+        <div class="bg-light p-3">
+            <form method="GET" class="d-flex justify-content-around" action="{% url 'online-shop' %}">
+                <select name="category" id="" class="form-control-cart align-self-center">
+                    <option value="">Select a category</option>
+                    <option value="1">Phone</option>
+                    <option value="2">Modems</option>
+                </select>
+
+                <label for="" class="align-self-center">
+                    Price greater than: £ <span id="gt">0</span>
+                </label>
+                <input type="range" name="price__gte" max="500" min="0" value="0" onchange="price_change(event)" class="align-self-center" >
+
+                <label for="" class="align-self-center">
+                    Price lesser than: £ <span id="lt">500</span>
+                </label>
+                <input type="range" name="price__lte" max="500" onchange="price_change(event)" min="0" value="500" class="align-self-center">
+
+                <button class="btn btn-dark">Apply Filters</button>
+                <a href="{% url 'online-shop' %}" class="btn btn-secondary">Remove Filters</a>
+
+            </form>
+        </div>
 
         {#   queryset div     #}
-        <div class="container my-3 row m-0 justify-content-between">
+        <div class="container my-3 row m-0">
         {% for items in list %}
-            <div class="border my-2 col-lg-3 p-0" style="width: 25%">
+            <div class="my-4 col-lg-4 p-0 ">
+            <div class="border-right border-left" style="width: 80%">
                 {% for item in items.product_img.all %}
                     {% ifequal forloop.counter 1 %}
-                        <img src="{{ item.get_photo_url }}" height="200px" id="cover_img{{ items.pk }}" class="w-100 img" alt="{{ item.color }}">
+                        <img src="{{ item.get_photo_url }}" height="300px" id="cover_img{{ items.pk }}" class="d-block img-mobile" alt="{{ item.color }}">
                             <p id="text{{ items.pk }}" class="px-1 m-0" >Color: {{ item.color }}</p>
 
                     {% endifequal %}
@@ -36,6 +59,7 @@
                     <a href="{% url 'wishlist-add' items.pk %}" class="default_a"><i class="fas fa-heart"></i></a>
 
                 </div>
+            </div>
             </div>
         {% endfor %}
         </div>
@@ -102,6 +126,12 @@
             }
         })
 
+    }
+
+
+    function price_change(e){
+        console.log(e.target.value)
+        e.target.previousElementSibling.firstElementChild.innerHTML = parseInt(e.target.value)
     }
 
 {% endblock %}

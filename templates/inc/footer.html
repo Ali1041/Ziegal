@@ -21,28 +21,28 @@
 
     {#  Newsletter div  #}
 
-    <div class="d-flex justify-content-around p-3 my-4" style="width: 55%;margin: auto">
-        <h2 class="m-0 align-self-center">JOIN OUR NEWSLETTER</h2>
+    <div class="d-flex justify-content-around p-3 my-4 width80" style="width: 55%;margin: auto">
+        <h3 class="m-0 align-self-center">JOIN OUR NEWSLETTER</h3>
         {% csrf_token %}
-        <input type="email" name="email" placeholder="Email Address" class="form-control w-25">
+        <input type="email" name="email" placeholder="Email Address" class="form-control w-25 input">
         <button class="btn btn-dark text-white" onclick="subscribe(event)" data-toggle="modal" data-target="#newsletter">SUBSCRIBE</button>
     </div>
 
     {#  all links  #}
-    <div class="row" style="width: 80%;margin: auto">
+    <div class="row width80" style="width: 80%;margin: auto">
 
         {#    Information div    #}
-        <div class="col-lg-4">
+        <div class="col-lg-4 p-0">
             <h4>INFORMATION</h4>
             <p><a href="" class="default_a">Contact Us</a></p>
-            <p><a href="" class="default_a">Ziegal Blog</a></p>
-            <p><a href="" class="default_a">Mission Statement</a></p>
-            <p><a href="" class="default_a">Privacy Policy</a></p>
-            <p><a href="" class="default_a">Terms and conditions</a></p>
+            <p><a href="{% url 'blog-list' %}" class="default_a">Ziegal Blog</a></p>
+            <p><a href="{% url 'mission-statement' %}" class="default_a">Mission Statement</a></p>
+            <p><a href="{% url 'privacy-policy' %}" class="default_a">Privacy Policy</a></p>
+            <p><a href="{% url 'terms-condition' %}" class="default_a">Terms and conditions</a></p>
         </div>
 
         {#   Menu div     #}
-        <div class="col-lg-4">
+        <div class="col-lg-4 p-0">
             <h4>MENU</h4>
             <p><a href="{% url 'dual-sims' %}" class="default_a">Dual Sim</a></p>
             <p><a href="{% url 'online-shop' %}" class="default_a">Online Shop</a></p>
@@ -52,13 +52,13 @@
         </div>
 
         {#   Ziegal div     #}
-        <div class="col-lg-4">
+        <div class="col-lg-4 p-0">
             <h4>ZIEGAL</h4>
-            <p><a href="" class="default_a">International House</a></p>
-            <p><a href="" class="default_a">Mosley Street,</a></p>
-            <p><a href="" class="default_a">Manchester M2 3HZ</a></p>
-            <p><b>Contact: </b><a href="tel +0800 211 8289" class="default_a">0800 211 8289</a></p>
-            <p><b>Email: </b><a href="" class="default_a">customer.service@ziegal.co.uk</a></p>
+            <p><a  class="default_a">International House</a></p>
+            <p><a  class="default_a">Mosley Street,</a></p>
+            <p><a  class="default_a">Manchester M2 3HZ</a></p>
+            <p><b>Contact: </b><a href="tel: +0800 211 8289" class="default_a">0800 211 8289</a></p>
+            <p><b>Email: </b><a href="https://mail.google.com/mail/?view=cm&fs=1&to=customer.service@ziegal.co.uk" class="default_a">customer.service@ziegal.co.uk</a></p>
         </div>
 
 

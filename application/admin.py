@@ -8,4 +8,4 @@ admin.site.register(Product)
 admin.site.register(Cart)
 admin.site.register(ProductImage)
 admin.site.register(CompleteOrder)
-
+admin.site.register(MetaInfo)

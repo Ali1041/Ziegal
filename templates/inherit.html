@@ -1,16 +1,21 @@
 {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+{% block head %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script defer src="https://kit.fontawesome.com/359826513d.js" crossorigin="anonymous"></script>
 {% load bootstrap4 %}
 {% bootstrap_css %}
 {% bootstrap_jquery %}
 {% bootstrap_javascript %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script  src="https://kit.fontawesome.com/359826513d.js" crossorigin="anonymous"></script>
+{% endblock %}
 
-{% block head %}
+{% block head2 %}
 
 {% endblock %}
 </head>
@@ -27,5 +32,58 @@
 {% block script %}
 
 {% endblock %}
+           if (window.innerWidth>769){
+        const desktop = document.getElementById('desktop')
+        const mobile = document.getElementById('mobile')
+
+        desktop.style.display = 'flex'
+        mobile.style.display = 'none'
+    }
+
+
+
+
+    function home(){
+        const base_url = location.origin
+        location.replace(`${base_url}`)
+
+    }
+
+    function count(){
+        const element = document.getElementById('count')
+        fetch(`${location.origin}/count/`)
+        .then((res)=>{
+            return res.json()
+        })
+        .then((result)=>{
+            element.innerHTML = result.count
+        })
+    }
+
+
+    function search(e){
+        const aTag = e.target.nextElementSibling
+        aTag.href = `${location.origin}/search/${e.target.value}/`
+    }
+
+
+
+
+    function animateMenu(e){
+        const menu = document.getElementById('menu')
+        if (menu.style.visibility === 'hidden') {
+            menu.style.height = 100+'%'
+            menu.classList.remove('fade-out')
+            menu.classList.add('fade-in')
+            menu.style.visibility = 'visible'
+        }
+    else{
+            menu.style.height = 0
+
+            menu.classList.remove('fade-in')
+            menu.classList.add('fade-out')
+            menu.style.visibility = 'hidden'
+        }
+    }
 </script>
 </html>

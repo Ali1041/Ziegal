@@ -1,12 +1,12 @@
 {% extends 'inherit.html' %}
 
-{% block head %}
+{% block head2 %}
 
 {% endblock %}
 
 {% block body %}
     {% include 'inc/navbar.html' %}
-        <div class="p-5 border my-5" style="width: 40%;margin: auto">
+        <div class="p-5 border my-5 form-width" style="width: 40%;margin: auto">
         <form action="" method="POST" >
             {% if messages %}
             {% for msg in messages %}

@@ -1,6 +1,6 @@
 {% extends 'inherit.html' %}
 {% load static %}
-{% block head %}
+{% block head2 %}
     <meta name="{{ name }}" content="{{ description }}">
     <title>{{ title }}</title>
 {% endblock %}
@@ -14,7 +14,7 @@
         
         {#   img div     #}
         <div class="text-center my-4">
-            <img src="{% static 'imgs/monthly1.PNG' %}" alt="5G monthly deals">
+            <img src="{% static 'imgs/monthly1.PNG' %}" class="img-mobile" alt="5G monthly deals">
         </div>
 
         {#  text div  #}
@@ -24,21 +24,21 @@
             <p>If you are paying too much for your mobile phone deal, there are other options available. These options are more affordable and very easy to set up. All you need to do is choose one of the great monthly deals here at Ziegal and register your SIM with EE, Giffgaff, Vodafone or 3 mobile.</p>
             <p>We have selected some great pay monthly deals with some of the best mobile phones available to suit all budgets, monthly network operator deals from EE, Giffgaff, Vodafone and 3 Mobile to help save you money.</p>
             <p>Click the deals below for the Pay Monthly deals available from EE or Register for your Sim and transfer your existing mobile number.</p>
-            <img class="w-100" src="{% static 'imgs/monthly2.PNG' %}" alt="EE Deals">
+            <img class="w-100 img-mobile" src="{% static 'imgs/monthly2.PNG' %}"  alt="EE Deals">
             <p>Ziegal likes to keep it simple just buy the mobile phone you want and register your details with the network operator that provides you the best signal in your area. You can buy latest GM9 Pro from us for just £149 and Buy above EE package with rolling contract of 24 months to enjoy 160 GB, Unlimited Calls and Texts for just £20/month. Our Gm9 pro is also unlocked and Sim Free meaning you can switch your network at any time.</p>
-            <img src="{% static 'imgs/monthly3.PNG' %}" alt="GM9 pro mobile">
-            <img class="w-100" src="{% static 'imgs/monthly4.PNG' %}" alt="EE Deals">
-            <img class="w-100" src="{% static 'imgs/monthly5.PNG' %}" alt="EE deals">
+            <img src="{% static 'imgs/monthly3.PNG' %}" class="img-mobile" alt="GM9 pro mobile">
+            <img class="w-100 " src="{% static 'imgs/monthly4.PNG' %}" alt="EE Deals">
+            <img class="w-100 " src="{% static 'imgs/monthly5.PNG' %}" alt="EE deals">
             <p class="my-4">Another advantage of buying pay monthly deals is that you can buy latest mobile phones with only paying a small amount for a contract period of 12 months to 36 months. If you are looking to buy latest iphone 12 pro max than best deal is provided by EE. Iphone 12 pro max is newest iphone released by apple. With paying an upfront price of £50 and monthly £77 you can enjoy 100 GB internet and unlimited calls and text messages.</p>
 
             {#    enwrapping img div        #}
             <div style="background-color: whitesmoke">
-                <img src="{% static 'imgs/monthly6.PNG' %}" alt="">
+                <img src="{% static 'imgs/monthly6.PNG' %}" class=" img-mobile" alt="">
             </div>
             <img class="w-100" src="{% static 'imgs/monthly7.PNG' %}" alt="">
             <p class="my-5">If you are looking for affordable mobile phones than Samsung A41s pay monthly phone deal from Giffgaff with a rolling contract of 24 months is one of best available deals. You have to pay a upfront price of £25 and monthly £10.76 for mobile phone and minimum £6 to get 500 MB internet and unlimited calls and text messages. You can also select any goodybag from below.</p>
-            <img  src="{% static 'imgs/monthly8.PNG' %}" alt="">
-            <img  src="{% static 'imgs/monthly9.PNG' %}" alt="">
+            <img  src="{% static 'imgs/monthly8.PNG' %}" class=" img-mobile" alt="">
+            <img  src="{% static 'imgs/monthly9.PNG' %}" class=" img-mobile" alt="">
             <p>You can also buy any goodybag which suits your requirement and instead of buying Samsung A41s you can buy our latest Gm20Pro with advance configuration for just one time payment of £199. This amount can also be paid in 3 easy instalments when you buy through KLARNA. Gm20 Pro is also unlocked and Sim Free mobile phone.</p>
         </div>
 
@@ -55,14 +55,14 @@
         </div>
 
         {#  video div  #}
-        <div>
-            video div
+        <div class="my-3">
+            <video src="blob:https://www.youtube.com/af84417e-dbb5-4893-9f57-0a14a255c4ff" height="400px" class="w-100" controls></video>
         </div>
 
         {#  text video  #}
         <div class="text-center">
             <p>If you are an Android lover than Google Pixel 4a comes with all the features you can imagine. One of best deal for Google Pixel 4a 5G is offered by Vodafone having 24 month contract.</p>
-            <img class="w-100" src="{% static 'imgs/monthly10.PNG' %}" alt="Google Pixel 4a 5G">
+            <img class="w-100 " src="{% static 'imgs/monthly10.PNG' %}"  alt="Google Pixel 4a 5G">
             <p class="my-4">You can enjoy Google Pixel 4a along 100 GB of internet with unlimited calls and texts for an upfront cost of £29 and Monthly payment of £35 for contract period of 24 months.</p>
             <img class="w-100" src="{% static 'imgs/monthly11.PNG' %}" alt="">
             <p>Click the deals below for the Pay Monthly deals available from Vodafone or Register for your Sim and transfer your existing mobile number. </p>

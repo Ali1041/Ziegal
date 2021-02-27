@@ -1,6 +1,6 @@
 {% extends 'inherit.html' %}
 
-{% block head %}
+{% block head2 %}
 
 {% endblock %}
 
@@ -13,17 +13,19 @@
         <div class="row m-0  my-5">
 
         {#  for cover img  #}
-        <div style="width: 40%;" class="col-lg-6">
+        <div style="width: 40%;" class="col-lg-6 width80 mtb">
             {% for item in detail.product_img.all %}
                 {% ifequal forloop.counter 1 %}
-                    <img src="{{ item.get_photo_url }}" height="200px" id="cover_img" class="w-100 img" alt="{{ item.color }}">
+                    <img src="{{ item.get_photo_url }}" height="350px" id="cover_img" style="max-width:100%" class="mtb img-mobile" alt="{{ item.color }}">
 
                 {% endifequal %}
 
 
 
     {#  for list fo img  #}
-                        <img src="{{ item.get_photo_url }}" onclick="change_img(event)" height="50px" width="50px" style="cursor:pointer;" class="my-2 img" alt="{{ item.color }}">
+                <div class="my-3">
+                    <img src="{{ item.get_photo_url }}" onclick="change_img(event)" height="50px" width="50px" style="cursor:pointer;" class="my-2 img" alt="{{ item.color }}">
+                </div>
             {% endfor %}
         </div>
 
@@ -41,10 +43,17 @@
 
                 </div>
                 <h4 id="color">Color: </h4>
-                    <input type="submit" onclick="operation(event)" class="btn btn-dark" value="-">
-                    <input type="number" id="qty" class="form-control-cart" value="1">
-                    <input type="submit" onclick="operation(event)" class="btn btn-dark" value="+">
-                    <button onclick="add_to_cart(event,{{ detail.pk }})" class="btn btn-dark">ADD TO CART</button>
+
+                <div class="d-flex justify-content-around w-50 width100">
+
+                    <input type="submit" onclick="operation(event)" class="btn btn-dark align-self-center" value="-">
+                    <input type="number" id="qty" class="form-control-cart align-self-center" value="1">
+                    <input type="submit" onclick="operation(event)" class="btn btn-dark align-self-center" value="+">
+                    <button onclick="add_to_cart(event,{{ detail.pk }})" class="btn btn-dark align-self-center">ADD TO CART</button>
+
+
+                </div>
+
             </div>
         </div>
 
@@ -76,12 +85,9 @@
     const imgs = document.getElementsByClassName('img')
     const p = document.getElementById('color')
 
-    for (let i=1;i<imgs.length;i++) {
-        if (imgs[0].src === imgs[i].src) {
-            imgs[i].style.border = '1px solid black'
-            p.innerHTML = `Color: ${imgs[i].alt}`
-        }
-    }
+    p.innerHTML = `Color: ${imgs[0].alt}`
+
+
        function change_img(e){
 
         const cover = document.getElementById('cover_img')

@@ -10,7 +10,7 @@
 
     {#  upper navbar  #}
     <div class="border-bottom">
-        <div class="d-flex justify-content-between border-right p-2" style="width: 80%;margin: auto">
+        <div class="d-flex justify-content-between border-right p-2 width100" style="width: 80%;margin: auto">
             <p class="m-0 align-self-center text1" >GBP</p>
             <div>
                 {% if user.is_superuser %}
@@ -30,9 +30,9 @@
     </div>
 
 
-    {#  lower navbar  #}
-    <div class="d-flex justify-content-around p-2 " style="width: 90%;margin: auto">
-        <div>
+    {#  lower navbar for desktops #}
+    <div class=" justify-content-around p-2 bg-white" id="desktop" style="z-index: 1;position: sticky;top: 0;display: none;width: 100%;margin: auto">
+        <div >
             <img onclick="home()" src="{% static 'imgs/ipad_icon_retina.png' %}" style="cursor: pointer" alt="Ziegal Logo">
         </div>
         <a href="{% url 'dual-sims' %}" class="align-self-center default_a">Dual Sims</a>
@@ -51,34 +51,34 @@
         </div>
     </div>
 
+
+    {#  lower navbar for mobiles  #}
+    <div id="mobile">
+        <div class="text-center my-3">
+            <img onclick="home()" src="{% static 'imgs/ipad_icon_retina.png' %}" style="cursor: pointer" alt="Ziegal Logo">
+        </div>
+
+        <div style="margin: auto;width: fit-content" >
+            <p class="menu-button" onclick="animateMenu(event)">Menu</p>
+
+        </div>
+
+        <div class="menu text-center fade-out" style="height:0;visibility: hidden;margin: auto;width: fit-content" id="menu">
+            <a href="{% url 'dual-sims' %}" class="text-center default_a">Dual Sims</a>
+            <a href="{% url 'online-shop' %}" class="align-self-center default_a">Online Shop</a>
+            <a href="{% url 'monthly-deals' %}" class="align-self-center default_a">Pay Monthly Deals</a>
+            <a href="{% url 'broadband_deals' %}" class="align-self-center default_a">BroadBands Deals</a>
+            <a href="{% url 'z-wifi' %}" class="align-self-center default_a">Z-Wifi</a>
+            <a href="{% url 'cart' %}" class="align-self-center default_a">
+            <img src="{% static 'imgs/cart2.svg' %}" height="20px" alt=""></a>
+        </div>
+    </div>
 {% endblock %}
 
 
 <script defer>
 {% block script %}
-    function home(){
-        const base_url = location.origin
-        console.log(base_url)
-        location.replace(`${base_url}`)
-
-    }
-
-    function count(){
-        const element = document.getElementById('count')
-        fetch(`${location.origin}/count/`)
-        .then((res)=>{
-            return res.json()
-        })
-        .then((result)=>{
-            element.innerHTML = result.count
-        })
-    }
 
 
-    function search(e){
-        console.log(e.target.value)
-        const aTag = e.target.nextElementSibling
-        aTag.href = `${location.origin}/search/${e.target.value}/`
-    }
 {% endblock %}
 </script>

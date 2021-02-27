@@ -1,0 +1,39 @@
+{% extends 'inherit.html' %}
+
+{% block head2 %}
+
+{% endblock %}
+
+{% block body %}
+
+
+    {% include 'inc/navbar.html' %}
+    {# wrapper div   #}
+    <div class="container">
+
+    {# list of all blogs   #}
+
+        {% for item in list %}
+            <div class="border-top border-bottom p-2 my-3 d-flex justify-content-between">
+                <div>
+                    <h3><a href="{% url 'blog-detail' item.pk %}" style="color:inherit">{{ item.title }}</a></h3>
+                    <small>{{ item.date }}</small>
+                    <p>{{ item.text|safe|truncatewords_html:30 }}</p>
+                </div>
+                <div>
+                    <img src="{{ item.get_photo_url }}" height="200px" style="max-width: 100%" alt="{{ item.title }}">
+
+                </div>
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% include 'inc/footer.html' %}
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

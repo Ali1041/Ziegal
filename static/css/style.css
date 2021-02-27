@@ -37,3 +37,59 @@
 .my-btn:hover{
     border-color:grey ;
 }
+
+@media (max-width:768px) {
+    .img-mobile{
+        width: 100%!important;
+    }
+    .width80{
+        width: 100%!important;
+        display: block!important;
+        padding: 2px!important;
+    }
+    .input{
+        width: 100%!important;
+        margin: 5px 0px;
+    }
+    .width100{
+        width: 100%!important;
+        padding:4px 0!important;
+    }
+    .menu a{
+        display: block;
+        padding: 5px 0;
+        margin: 5px 0;
+        border-bottom: 1px solid gray;
+        text-align: center;
+    }
+    .menu-button{
+        border: 1px solid black;
+        border-radius: 3px;
+        padding: 2px 5px;
+        width: fit-content;
+    }
+    .menu-button:hover{
+        border: 1px solid grey;
+        color: gray;
+    }
+
+    .fade-in a{
+        opacity: 1;
+        transform:translateY(0%) ;
+        transition: .2s all ease-in-out;
+    }
+    .fade-out a{
+        opacity: 0;
+        transform: translateY(-19%);
+        transition: .2s all ease-in-out;
+    }
+    .mtb{
+        margin: 5px 0;
+    }
+    .form-width{
+        width: 90%!important;
+    }
+    .slider-height{
+        height: 150px!important;
+    }
+}

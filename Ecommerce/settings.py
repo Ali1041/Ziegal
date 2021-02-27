@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
-
+from my import *
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,12 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'e#5cy-na1#q_!mdvkft%4th1g0(&xf816j%r(#!2y=kloqym@q'
+SECRET_KEY = SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -88,6 +88,40 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+# import pymysql
+#
+# pymysql.version_info = (1, 4, 6, 'final', 0)
+# pymysql.install_as_MySQLdb()
+# if os.getenv('GAE_APPLICATION', None):
+#     # Running on production App Engine, so connect to Google Cloud SQL using
+#     # the unix socket at /cloudsql/<your-cloudsql-connection string>
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.mysql',
+#             'HOST': '/cloudsql/ziegal:europe-west2:application-instance',
+#             'USER': 'ziegal',
+#             'PASSWORD': 's-9zUNU#?uH~y"A^',
+#             'NAME': 'main',
+#         }
+#     }
+# else:
+#     # Running locally so connect to either a local MySQL instance or connect to
+#     # Cloud SQL via the proxy. To start the proxy via command line:
+#     #
+#     #     $ cloud_sql_proxy -instances=[INSTANCE_CONNECTION_NAME]=tcp:3306
+#     #
+#     # See https://cloud.google.com/sql/docs/mysql-connect-proxy
+#
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.mysql',
+#             'HOST': '127.0.0.1',
+#             'PORT': '3306',
+#             'USER': 'ziegal',
+#             'PASSWORD': 's-9zUNU#?uH~y"A^',
+#             'NAME': 'main',
+#         }
+#     }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -130,5 +164,14 @@ STATICFILES_DIRS = (
 )
 # STATIC_ROOT = 'static'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = 'media/'
+from google.oauth2 import service_account
+
+GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+    os.path.join(BASE_DIR, 'credential.json')
+)
+DEFAULT_FILE_STORAGE = 'Ecommerce.gcloud.GoogleCloudMediaFileStorage'
+GS_PROJECT_ID = 'ziegal'
+GS_BUCKET_NAME = 'ziegal-bucket'
+MEDIA_ROOT = "media/"
+UPLOAD_ROOT = 'media/'
+MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(GS_BUCKET_NAME)

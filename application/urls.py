@@ -50,7 +50,15 @@ urlpatterns = [
     # checkout cart
     path('checkout/',checkout,name='checkout'),
 
-    # misllaneous
+    # misallaneous
     path('search/<str:name>/',search,name='search'),
-    path('thank-you/',thank_you,name='thank-you')
+    path('thank-you/',thank_you,name='thank-you'),
+    path('mission-statement/',mission_statement,name='mission-statement'),
+    path('privacy-policy/',privacy_policy,name='privacy-policy'),
+    path('terms-and-condition/',terms_condition,name='terms-condition'),
+
+
+    # blog urls
+    path('blog-list/',blog_list,name='blog-list'),
+    path('blog-detail/<int:pk>/',blog_detail,name='blog-detail'),
 ]

@@ -7,6 +7,7 @@ from django.views import generic
 from django.contrib.auth import login as log, get_user_model, authenticate
 from django.contrib import messages
 from .forms import *
+from .filters import *
 
 User = get_user_model()
 
@@ -15,7 +16,7 @@ User = get_user_model()
 
 def count(request):
     if request.user.is_authenticated:
-        cart_count = Cart.objects.select_related('user').filter(user=request.user,checkout=False)
+        cart_count = Cart.objects.select_related('user').filter(user=request.user, checkout=False)
         return JsonResponse({'count': cart_count.count()})
     else:
         return JsonResponse({'count': 0})
@@ -56,8 +57,8 @@ def login(request):
 
 
 # newsletter ajax call
-def newsletter_subscribe(reqeust, **kwargs):
-    data = json.loads(reqeust.body)
+def newsletter_subscribe(request, **kwargs):
+    data = json.loads(request.body)
     newsletter_instance = Newsletter.objects.filter(email__iexact=data['email'])
     if newsletter_instance:
         return JsonResponse({'msg': 'You are already subscribed to our list. Thank you!'})
@@ -68,11 +69,15 @@ def newsletter_subscribe(reqeust, **kwargs):
 
 # home page
 def index(request):
+    Ip_address = request.META.get('HTTP_X_FORWARDED_FOR')
+    new_ip = request.META.get('REMOTE_ADDR')
+    print(Ip_address, new_ip)
     items = Product.objects.prefetch_related('product_img').all()
     list1 = items[:3]
     list2 = items[3:6]
     list3 = items[6:9]
-    ctx = {'list1': list1, 'list2': list2, 'list3': list3, 'count': json.loads(count(request).content)['count']}
+    ctx = {'list': items, 'list1': list1, 'list2': list2, 'list3': list3,
+           'count': json.loads(count(request).content)['count']}
     meta = MetaInfo.objects.first()
     ctx['name'] = meta.home_name
     ctx['description'] = meta.home_description
@@ -104,6 +109,11 @@ def monthly_deals(request):
 def online_shop(request):
     ctx = {'list': Product.objects.prefetch_related('product_img', 'category').all(),
            'count': json.loads(count(request).content)['count']}
+
+    if len(request.GET) > 1:
+        x = OnlineShopFilter(request.GET, queryset=Product.objects.prefetch_related('product_img', 'category').all())
+        ctx['list'] = x.qs
+
     meta = MetaInfo.objects.first()
     ctx['name'] = meta.online_shop_name
     ctx['description'] = meta.online_shop_description
@@ -136,8 +146,6 @@ def wishlist(request):
 
 # AJAX request for wishlist addition
 def add_wishlist(request, **kwargs):
-    print(kwargs)
-
     # for anonymous users
     if not request.user.is_authenticated:
         messages.warning(request, 'You are not logged in. To add items to the wishlist, you must login first!')
@@ -166,7 +174,7 @@ def z_wifi(request):
     ctx['name'] = meta.wifi_name
     ctx['description'] = meta.wifi_description
     ctx['title'] = meta.wifi_title
-    return render(request, 'z_wifi.html')
+    return render(request, 'z_wifi.html', ctx)
 
 
 # search page
@@ -205,7 +213,10 @@ def add_to_cart(request, **kwargs):
 
 # cart page
 def cart_list(request):
-    ctx = {'list': Cart.objects.select_related('product', 'user').filter(user=request.user,checkout=False),
+    if not request.user.is_authenticated:
+        return redirect('login')
+
+    ctx = {'list': Cart.objects.select_related('product', 'user').filter(user=request.user, checkout=False),
            'count': json.loads(count(request).content)['count']}
     total_price = 0
     for item in ctx['list']:
@@ -232,6 +243,7 @@ def delete_cart(request, **kwargs):
     return JsonResponse({'deleted': 'deleted'})
 
 
+# checkout page
 def checkout(request):
     ctx = {}
     form = CheckoutForm(request.POST or None)
@@ -240,7 +252,7 @@ def checkout(request):
         if form.is_valid():
             checkout_user = form.save(commit=True)
 
-            carts = Cart.objects.select_related('product','user').filter(user=request.user)
+            carts = Cart.objects.select_related('product', 'user').filter(user=request.user)
             complete_order = CompleteOrder.objects.create(
                 user=checkout_user,
             )
@@ -254,3 +266,44 @@ def checkout(request):
 
 def thank_you(request):
     return render(request, 'thank_you.html')
+
+
+def save_user_info(request, **kwargs):
+    print(request.body)
+    data = json.loads(request.body).content
+    Ip_address = request.META.get('HTTP_X_FORWARDED_FOR')
+    print(Ip_address)
+    saved_user = UserRedirect.objects.create(
+        name=request.user,
+        IP=Ip_address
+    )
+
+
+# blog list
+
+def blog_list(request):
+    ctx = {'count': json.loads(count(request).content)['count'], 'list': Blog.objects.all()}
+    return render(request, 'blog_list.html', ctx)
+
+
+def blog_detail(request, **kwargs):
+    ctx = {'count': json.loads(count(request).content)['count'], 'detail': Blog.objects.get(pk=kwargs['pk'])}
+
+    return render(request, 'blog_detail.html', ctx)
+
+
+def mission_statement(request):
+    ctx = {'count': json.loads(count(request).content)['count']}
+
+    return render(request, 'mission_statement.html', ctx)
+
+
+def privacy_policy(request):
+    ctx = {'count': json.loads(count(request).content)['count']}
+
+    return render(request, 'privacy_policy.html', ctx)
+
+
+def terms_condition(request):
+    ctx = {'count': json.loads(count(request).content)['count']}
+    return render(request, 'terms_condition.html')
