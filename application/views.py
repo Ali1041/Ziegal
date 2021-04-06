@@ -39,8 +39,9 @@ def signup(request):
         except:
             messages.warning(request, 'This username is already taken!')
             return redirect('signup')
-
-    return render(request, 'signup.html')
+    meta = MetaInfo.objects.first()
+    ctx = {'title': meta.signup_title, 'name': meta.signup_name, 'description': meta.signup_description}
+    return render(request, 'signup.html', ctx)
 
 
 # login page
@@ -53,13 +54,20 @@ def login(request):
             return redirect('home')
         messages.warning(request, 'Invalid email or password')
         return redirect('login')
-    return render(request, 'login.html')
+
+    meta = MetaInfo.objects.first()
+    ctx = {'title': meta.login_title, 'name': meta.login_name, 'description': meta.login_description}
+    return render(request, 'login.html', ctx)
 
 
 # newsletter ajax call
 def newsletter_subscribe(request, **kwargs):
     data = json.loads(request.body)
+    if not '@' in data['email']:
+        return JsonResponse({'msg':'Enter a valid Email'})
     newsletter_instance = Newsletter.objects.filter(email__iexact=data['email'])
+
+
     if newsletter_instance:
         return JsonResponse({'msg': 'You are already subscribed to our list. Thank you!'})
 
@@ -71,7 +79,6 @@ def newsletter_subscribe(request, **kwargs):
 def index(request):
     Ip_address = request.META.get('HTTP_X_FORWARDED_FOR')
     new_ip = request.META.get('REMOTE_ADDR')
-    print(Ip_address, new_ip)
     items = Product.objects.prefetch_related('product_img').all()
     list1 = items[:3]
     list2 = items[3:6]

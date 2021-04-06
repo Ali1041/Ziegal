@@ -79,7 +79,12 @@
     function subscribe(e){
             const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
             const email = e.target.previousElementSibling.value
-            const p = document.getElementById('info')
+			const p = document.getElementById('info')
+
+			if (email===''){
+				p.innerHTML = 'Enter a valid email'
+				return
+			}
             fetch(`${base_url}/newsletter/subscribe/`,{
             method:'POST',
             body:JSON.stringify({email}),

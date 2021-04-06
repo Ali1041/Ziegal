@@ -59,7 +59,7 @@
                 <p id="color" class="p-2 m-0"></p>
 
                 <div class="p-2">
-                    <h4><a href="{% url 'detail-online-shop' items.pk %}" class="default_a">{{ items.name }}</a></h4>
+                    <h4><a href="{% url 'detail-online-shop' items.slug items.pk %}" class="default_a">{{ items.name }}</a></h4>
                     <p style="color: red" class="m-0">£ {{ items.price }}</p>
                     <a onclick="add_to_cart(event,{{ items.pk }})" class="btn btn-dark ">+ ADD TO CART</a>
                     <a href="{% url 'wishlist-add' items.pk  %}" class="default_a"><i class="fas fa-heart"></i></a>
@@ -83,7 +83,7 @@
                 <p id="color" class="p-2 m-0"></p>
 
                 <div class="p-2">
-                    <h4><a href="{% url 'detail-online-shop' items.pk %}" class="default_a">{{ items.name }}</a></h4>
+                    <h4><a href="{% url 'detail-online-shop' items.slug items.pk %}" class="default_a">{{ items.name }}</a></h4>
                     <p style="color: red" class="m-0">£ {{ items.price }}</p>
                     <a onclick="add_to_cart(event,{{ items.pk }})" class="btn btn-dark ">+ ADD TO CART</a>
                     <a href="{% url 'wishlist-add' items.pk  %}" class="default_a"><i class="fas fa-heart"></i></a>
@@ -106,7 +106,7 @@
                 <p id="color" class="p-2 m-0"></p>
 
                 <div class="p-2">
-                    <h4><a href="{% url 'detail-online-shop' items.pk %}" class="default_a">{{ items.name }}</a></h4>
+                    <h4><a href="{% url 'detail-online-shop' items.slug items.pk %}" class="default_a">{{ items.name }}</a></h4>
                     <p style="color: red" class="m-0">£ {{ items.price }}</p>
                     <a onclick="add_to_cart(event,{{ items.pk }})" class="btn btn-dark ">+ ADD TO CART</a>
                     <a href="{% url 'wishlist-add' items.pk  %}" class="default_a"><i class="fas fa-heart"></i></a>
@@ -173,7 +173,7 @@
 
 
 
-                                <h4><a href="{% url 'detail-online-shop' items.pk %}" class="default_a">{{ items.name }}</a></h4>
+                                <h4><a href="{% url 'detail-online-shop' items.slug items.pk %}" class="default_a">{{ items.name }}</a></h4>
 
                                 <p style="color: red" class="m-0">£ {{ items.price }}</p>
 

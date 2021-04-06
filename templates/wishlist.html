@@ -22,7 +22,7 @@
                     <tr>
                         <td>{{ item.item.name }}</td>
                         <td>{{ item.item.category }}</td>
-                        <td><a href="{% url 'detail-online-shop' item.item.pk %}" class="btn btn-secondary">Details</a></td>
+                        <td><a href="{% url 'detail-online-shop' item.item.slug item.item.pk %}" class="btn btn-secondary">Details</a></td>
                         <td><a style=""
                                 onclick="to_cart(event,{{ item.item.pk }})" class="my-btn default_a py-1 px-2">+Add to cart</a></td>
                     </tr>

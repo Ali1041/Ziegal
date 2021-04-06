@@ -31,7 +31,7 @@ urlpatterns = [
 
     # online shop url
     path('online-shop/',online_shop,name='online-shop'),
-    path('online-shop/<int:pk>/',DetailProduct.as_view(),name='detail-online-shop'),
+    path('online-shop<slug:slug>/<int:pk>/',DetailProduct.as_view(),name='detail-online-shop'),
 
     # z_wifi url
     path('z-wifi/',z_wifi,name='z-wifi'),
@@ -60,5 +60,5 @@ urlpatterns = [
 
     # blog urls
     path('blog-list/',blog_list,name='blog-list'),
-    path('blog-detail/<int:pk>/',blog_detail,name='blog-detail'),
+    path('blog-detail/<slug:slug>/<int:pk>/',blog_detail,name='blog-detail'),
 ]

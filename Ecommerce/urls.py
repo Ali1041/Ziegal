@@ -17,15 +17,29 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf.urls.static import static
 from django.conf import settings
+from django.contrib.sitemaps.views import sitemap
+from application.sitemap import *
+
+sitemaps = {
+    'static':StaticPages,
+    'products':ProductsMap,
+    'blog':BlogsMap
+}
+
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('application.urls')),
-    path('adminPanel/',include('adminPanel.urls')),
-    path('ckeditor/',include('ckeditor_uploader.urls'))
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+                  path('admin/', admin.site.urls),
+                  path('', include('application.urls')),
+                  path('adminPanel/', include('adminPanel.urls')),
+                  path('ckeditor/', include('ckeditor_uploader.urls')),
+                  path('sitemap.xml/', sitemap, {'sitemaps': sitemaps},
+                       name='django.contrib.sitemaps.views.sitemap'),
+                  # path('robots.txt/',Template_viwe())
+              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG:
     import debug_toolbar
+
     urlpatterns = [
                       path('__debug__/', include(debug_toolbar.urls))
                   ] + urlpatterns

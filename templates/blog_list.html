@@ -16,7 +16,7 @@
         {% for item in list %}
             <div class="border-top border-bottom p-2 my-3 d-flex justify-content-between">
                 <div>
-                    <h3><a href="{% url 'blog-detail' item.pk %}" style="color:inherit">{{ item.title }}</a></h3>
+                    <h3><a href="{% url 'blog-detail' item.slug item.pk %}" style="color:inherit">{{ item.title }}</a></h3>
                     <small>{{ item.date }}</small>
                     <p>{{ item.text|safe|truncatewords_html:30 }}</p>
                 </div>

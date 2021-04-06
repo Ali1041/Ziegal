@@ -33,6 +33,8 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
@@ -45,6 +47,8 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
 
 ]
+SITE_ID = 1
+
 CKEDITOR_UPLOAD_PREFIX = 'media/uploads/'
 CKEDITOR_UPLOAD_PATH = "media/uploads/"
 MIDDLEWARE = [
@@ -159,6 +163,7 @@ INTERNAL_IPS = ['127.0.0.1']
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
