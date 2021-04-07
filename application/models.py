@@ -2,7 +2,8 @@ from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth import get_user_model
 from django.utils.text import slugify
-from django.urls import reverse,reverse_lazy
+from django.urls import reverse, reverse_lazy
+
 # Create your models here.
 
 
@@ -11,11 +12,11 @@ User = get_user_model()
 
 class Category(models.Model):
     name = models.CharField(max_length=128)
-    slug = models.SlugField(max_length=255,default='slug')
+    slug = models.SlugField(max_length=255, default='slug')
 
-    def save(self, *args,**kwargs):
+    def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
-        return super().save(*args,**kwargs)
+        return super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -49,17 +50,18 @@ class Product(models.Model):
     meta_title = models.CharField(max_length=255, default='description')
     meta_name = models.CharField(max_length=255, default='description')
     meta_description = models.TextField(default='description')
-    slug = models.SlugField(max_length=255,default='slug')
+    slug = models.SlugField(max_length=255, default='slug')
 
-    def save(self, *args,**kwargs):
+    def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
-        return super().save(*args,**kwargs)
+        return super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        return reverse_lazy('detail-online-shop',kwargs={'slug':self.slug,'pk':self.pk})
+        return reverse_lazy('detail-online-shop', kwargs={'slug': self.slug, 'pk': self.pk})
+
 
 class Cart(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -102,12 +104,11 @@ class Blog(models.Model):
     meta_title = models.CharField(max_length=255, default='description')
     meta_name = models.CharField(max_length=255, default='description')
     meta_description = models.TextField(default='decxription')
-    slug = models.SlugField(max_length=255,default='slug')
+    slug = models.SlugField(max_length=255, default='slug')
 
-    def save(self, *args,**kwargs):
-
+    def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
-        return super().save(*args,**kwargs)
+        return super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
@@ -117,7 +118,8 @@ class Blog(models.Model):
             return self.title_img.url
 
     def get_absolute_url(self):
-        return reverse_lazy('blog-detail',kwargs={'slug':self.slug,'pk':self.pk})
+        return reverse_lazy('blog-detail', kwargs={'slug': self.slug, 'pk': self.pk})
+
 
 class UserRedirect(models.Model):
     name = models.CharField(max_length=128, unique=False)
@@ -188,6 +190,18 @@ class MetaInfo(models.Model):
     blogs_title = models.CharField(max_length=255, default='description')
     blog_name = models.CharField(max_length=255, default='description')
     blog_description = models.TextField(default='description')
+
+    mission_title = models.CharField(max_length=255, default='description')
+    mission_name = models.CharField(max_length=255, default='description')
+    mission_description = models.TextField(default='description')
+
+    privacy_title = models.CharField(max_length=255, default='description')
+    privacy_name = models.CharField(max_length=255, default='description')
+    privacy_description = models.TextField(default='description')
+
+    terms_title = models.CharField(max_length=255, default='description')
+    terms_name = models.CharField(max_length=255, default='description')
+    terms_description = models.TextField(default='description')
 
     def __str__(self):
         return 'Meta info'

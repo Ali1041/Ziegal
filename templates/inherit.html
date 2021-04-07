@@ -1,5 +1,6 @@
 {% load static %}
-
+{% load customs %}
+{% canonical_tag request as tag %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +9,7 @@
 {% block head %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="canonical" href="{{ tag }}">
     <script defer src="https://kit.fontawesome.com/359826513d.js" crossorigin="anonymous"></script>
 {% load bootstrap4 %}
 {% bootstrap_css %}
