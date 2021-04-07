@@ -1,11 +1,13 @@
 {% extends 'inherit.html' %}
 
 {% block head2 %}
-
+	<title>{{ title }}</title>
+	<meta name="{{ name }}" content="{{ description }}">
 {% endblock %}
 
 
 {% block body %}
+    {% include 'inc/navbar.html' %}
 
 {#  static page  #}
 
@@ -26,6 +28,7 @@
             <p>Is to constantly bring innovation to the UK telecommunications industry by helping people to effectively communicate with each other while providing exemplary customer service along the way. Ziegal believe that the needs of customers are the very base on which successful and sustainable businesses are made upon and we make it our customers our utmost priority. This is our core value.</p>
         </div>
     </div>
+    {% include 'inc/footer.html' %}
 
 {% endblock %}
 

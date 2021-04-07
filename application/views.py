@@ -99,7 +99,7 @@ def dual_sims(request):
     ctx['name'] = meta.dual_sim_name
     ctx['description'] = meta.dual_sim_description
     ctx['title'] = meta.dual_sim_title
-    return render(request, 'dual_sims.html')
+    return render(request, 'dual_sims.html',ctx)
 
 
 # monthly deals page
@@ -109,7 +109,7 @@ def monthly_deals(request):
     ctx['name'] = meta.monthly_deals_name
     ctx['description'] = meta.monthly_deals_description
     ctx['title'] = meta.monthly_deals_title
-    return render(request, 'monthly_deals.html')
+    return render(request, 'monthly_deals.html',ctx)
 
 
 # online shop page
@@ -148,6 +148,10 @@ def wishlist(request):
         return redirect('login')
     ctx = {'list': WishList.objects.select_related('item', 'user').filter(user=request.user),
            'count': json.loads(count(request).content)['count']}
+    meta = MetaInfo.objects.first()
+    ctx['name'] = meta.wishlist_title
+    ctx['description'] = meta.wishlist_name
+    ctx['title'] = meta.wishlist_description
     return render(request, 'wishlist.html', ctx)
 
 
@@ -171,7 +175,7 @@ def broadband_deals(request):
     ctx['name'] = meta.broadband_name
     ctx['description'] = meta.broadband_description
     ctx['title'] = meta.broadband_title
-    return render(request, 'broadband_deals.html')
+    return render(request, 'broadband_deals.html',ctx)
 
 
 #  z-wifi page
@@ -189,7 +193,12 @@ def search(request, **kwargs):
     query_item = Product.objects.prefetch_related('product_img', 'category').filter(
         Q(name__icontains=kwargs['name']) | Q(features__in=kwargs['name']) | Q(category__name=kwargs['name'])
     )
-    return render(request, 'search.html', {'list': query_item, 'count': json.loads(count(request).content)['count']})
+    ctx = {'list': query_item, 'count': json.loads(count(request).content)['count']}
+    meta = MetaInfo.objects.first()
+    ctx['title'] = meta.mission_title
+    ctx['name'] = meta.mission_name
+    ctx['description'] = meta.mission_description
+    return render(request, 'search.html',ctx )
 
 
 # add to cart
@@ -290,6 +299,10 @@ def save_user_info(request, **kwargs):
 
 def blog_list(request):
     ctx = {'count': json.loads(count(request).content)['count'], 'list': Blog.objects.all()}
+    meta = MetaInfo.objects.first()
+    ctx['title'] = meta.blog_title
+    ctx['name'] = meta.blog_name
+    ctx['description'] = meta.blog_description
     return render(request, 'blog_list.html', ctx)
 
 
@@ -301,16 +314,26 @@ def blog_detail(request, **kwargs):
 
 def mission_statement(request):
     ctx = {'count': json.loads(count(request).content)['count']}
-
+    meta = MetaInfo.objects.first()
+    ctx['title'] = meta.mission_title
+    ctx['name'] = meta.mission_name
+    ctx['description'] = meta.mission_description
     return render(request, 'mission_statement.html', ctx)
 
 
 def privacy_policy(request):
     ctx = {'count': json.loads(count(request).content)['count']}
-
+    meta = MetaInfo.objects.first()
+    ctx['title'] = meta.privacy_title
+    ctx['name'] = meta.privacy_name
+    ctx['description'] = meta.privacy_description
     return render(request, 'privacy_policy.html', ctx)
 
 
 def terms_condition(request):
     ctx = {'count': json.loads(count(request).content)['count']}
-    return render(request, 'terms_condition.html')
+    meta = MetaInfo.objects.first()
+    ctx['title'] = meta.terms_title
+    ctx['name'] = meta.terms_name
+    ctx['description'] = meta.terms_description
+    return render(request, 'terms_condition.html',ctx)

@@ -1,8 +1,10 @@
 {% extends 'inherit.html' %}
+
 {% load static %}
 {% block head2 %}
     <meta name="{{ name }}" content="{{ description }}">
     <title>{{ title }}</title>
+
 {% endblock %}
 
 {% block body %}
@@ -51,7 +53,7 @@
             <div class="border-right my-2" style="width: 30%">
                 {% for item in items.product_img.all %}
                     {% ifequal forloop.counter 1 %}
-                        <img src="{{ item.get_photo_url }}" loading="lazy" height="300px" id="cover_img" class="img d-block" alt="{{ item.color }}">
+                        <img src="{{ item.get_photo_url }}" loading="lazy" height="300px" id="cover_img{{ items.pk }}" class="img d-block" alt="{{ item.color }}">
 
                     {% endifequal %}
                             <img src="{{ item.get_photo_url }}" loading="lazy" height="40px" width="40px" style="cursor:pointer;" onclick="change_img(event)" class="m-2 img" alt="{{ item.color }}">
@@ -75,7 +77,7 @@
             <div class="border-right my-2" style="width: 30%">
                 {% for item in items.product_img.all %}
                     {% ifequal forloop.counter 1 %}
-                        <img src="{{ item.get_photo_url }}" loading="lazy" height="300px" id="cover_img" class="d-block img" alt="{{ item.color }}">
+                        <img src="{{ item.get_photo_url }}" loading="lazy" height="300px" id="cover_img{{ items.pk }}" class="d-block img" alt="{{ item.color }}">
 
                     {% endifequal %}
                             <img src="{{ item.get_photo_url }}" loading="lazy" height="40px" width="40px" style="cursor:pointer;" onclick="change_img(event)" class="m-2 img" alt="{{ item.color }}">
@@ -98,7 +100,7 @@
             <div class="border-right my-2" style="width: 25%">
                 {% for item in items.product_img.all %}
                     {% ifequal forloop.counter 1 %}
-                        <img src="{{ item.get_photo_url }}" loading="lazy" height="200px" id="cover_img" class="w-100 img" alt="{{ item.color }}">
+                        <img src="{{ item.get_photo_url }}" loading="lazy" height="200px" id="cover_img{{ items.pk }}" class="w-100 img" alt="{{ item.color }}">
 
                     {% endifequal %}
                             <img src="{{ item.get_photo_url }}" loading="lazy" height="30px" width="30px" style="cursor:pointer;" onclick="change_img(event)" class="m-2 img" alt="{{ item.color }}">
@@ -282,7 +284,9 @@
         </div>
     </div>
 
-
+    <div style="position: fixed;bottom: -10%;left: 45%;transition: all 0.7s ease-in-out" class="text-white" id="sign">
+        <p class="bg-dark px-2 p-1 " style="border-radius: 6px">Added to cart!</p>
+    </div>
     {#  include the footer  #}
     {% include 'inc/footer.html' %}
 
@@ -307,6 +311,32 @@
         const desktop = document.getElementById('desktopPro')
         desktop.style.display = 'block'
         mobile.style.display = 'none'
+    }
+
+
+	    function add_to_cart(e,pk){
+        console.log(pk)
+        const sign = document.getElementById('sign')
+        const img = document.getElementById(`cover_img${pk}`)
+        const color = img.alt
+        const base_url = location.origin
+        fetch(`${base_url}/add-to-cart/${pk}/1/${color}/`)
+        .then((res)=>{
+            return res.json()
+        })
+        .then((result)=>{
+            if (result.added === 'redirect'){
+                location.replace(`${base_url}/login/`)
+            }
+            else {
+                sign.style.bottom = 10 + '%'
+                setTimeout(() => {
+                    sign.style.bottom = -10 + '%'
+                }, 1500)
+                count()
+            }
+        })
+
     }
 
 {% endblock %}
