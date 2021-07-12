@@ -1,0 +1,66 @@
+{% extends 'inherit.html' %}
+
+{% block head2 %}
+
+{% endblock %}
+
+{% block body %}
+    {% include 'inc/navbar.html' %}
+        <div class="p-5 border my-5 form-width" style="width: 40%;margin: auto">
+        <form onsubmit="check(event)" action="{% url 'signup' %}" method="POST" >
+            {% csrf_token %}
+            {% if messages %}
+            {% for msg in messages %}
+                <p class="alert alert-danger text-center" >{{ msg }}</p>
+            {% endfor %}
+        {% endif %}
+            <p id="msg" class="text-center text-danger m-0"></p>
+            <h2 class="text-center">Register</h2>
+
+            <label for="" class="d-block">
+                Email
+                <input placeholder="Email" type="email" name="email" class="form-control">
+            </label>
+
+            <label for="" class="d-block">
+                Username
+                <input placeholder="Username" type="text" name="name" class="form-control">
+            </label>
+
+            <label for="" class="d-block">
+                Password
+                <input placeholder="Password" type="password" name="password" class="form-control">
+            </label>
+
+            <label for="" class="d-block">
+                Confirm Password
+                <input placeholder="Confirm Password" type="password" name="password_re" class="form-control">
+            </label>
+            <button class="btn btn-dark w-100">Signup</button>
+            <small>Already have an account?<a href="{% url 'login' %}">Login here</a></small>
+        </form>
+    </div>
+    {% include 'inc/footer.html' %}
+{% endblock %}
+<script>
+{% block script %}
+
+    function check(e){
+        const p = document.getElementById('msg')
+        const pass1 = e.target.children[5].firstElementChild.value
+        const pass2 = e.target.children[6].firstElementChild.value
+        console.log(pass1,pass2)
+        if (pass1!==pass2){
+            e.preventDefault()
+
+            p.innerHTML = 'Passwords do not match'
+            setTimeout(()=>{
+                p.innerHTML = ''
+            },2000)
+        }
+
+    }
+
+
+{% endblock %}
+</script>

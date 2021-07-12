@@ -1,0 +1,44 @@
+{% extends 'adminPanel/admin_home.html' %}
+{% block content %}
+
+    <div class="container my-5">
+        {#  buttons div  #}
+        <div>
+            <a href="{% url 'adminPanel:admin-home' %}" class="btn btn-secondary">Back</a>
+            <a href="{% url 'adminPanel:add-mobiles' category %}" class="btn btn-dark">Add Product</a>
+        </div>
+
+    {#  table  #}
+    <table class="table table-bordered my-2">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Stock</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in list %}
+                <tr>
+                    <td>
+                        {{ item.name }}
+                    </td>
+                    <td>
+                        {{ item.category }}
+                    </td>
+                    <td>
+                        {{ item.stock }}
+                    </td>
+                    <td>
+                        <a href="{% url 'adminPanel:mobile-detail' category item.pk %}" class="btn btn-dark">Details</a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+
+{% endblock %}

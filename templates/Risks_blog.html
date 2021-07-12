@@ -1,0 +1,137 @@
+{% extends 'inherit.html' %}
+{% load static %}
+{% block head2 %}
+
+
+<link rel="stylesheet" href="{% static 'css/blog_list.css' %}">
+
+
+{% endblock %}
+
+    
+{% block body %}
+
+
+    {% include 'inc/navbar.html' %}
+    {# wrapper div   #}
+    
+<div id="PageContainer">
+    <div class="mini-breadcrumb mb-md-5">
+            <div class="background">
+                    <div class="pattern">
+                            <div class="container">
+                            <!-- <div class="breadcrumb-content clearfix d-flex flex-wrap">
+                                <h1 id="title-page" class="hide">News</h1>
+                                <ul itemscope="" itemtype="http://schema.org/BreadcrumbList">
+                                <li itemprop="itemListElement" itemscope
+                                    itemtype="http://schema.org/ListItem">
+                                    <a itemprop="item" href="https://www.ziegal.co.uk">
+                                    <span itemprop="name">Home</span></a>
+                                    <meta itemprop="position" content="1" />
+                                </li><li itemprop="itemListElement" itemscope
+                                    itemtype="http://schema.org/ListItem">
+                                    <a itemprop="item" href="/blogs/news">
+                                    <span itemprop="name">News</span></a>
+                                    <meta itemprop="position" content="2" />
+                                </li></ul>
+                            </div> -->
+                            </div>
+                    </div>
+            </div>
+    </div>
+    <div class="main-content  ">
+                    <div class="background-content"></div>
+         <div class="background">
+                      <div class="shadow"></div>
+            <div class="pattern">
+                <div class="page-width">
+                     <div class="container px-2 pb-5">
+                                    <div class="row">
+                                        <div id="col-main" class="center-column content-with-background blog-page col-md-9 col-sm-12">
+                                          
+                                            <div class="post">
+                                                <div class="post-entry"><div class="post-media">
+                                                    <img alt="Risks of Using Your Smartphone at Night" class="lazyload" src='../static/imgs/1 (2).jpg'  />
+                                                  </div><div class="post-content"><p>The <a href="https://www.ziegal.co.uk/" target="_blank" title="smartphone" rel="noopener noreferrer">smartphone</a> has become an integral part of the modern individual. I mean, it’s virtually impossible to function without one. However, research has shown that the length of time you spend staring at your phone can actually have a devastating impact on your health. The research suggests that you need to minimize the amount of time you use your phone, especially at night. This doesn’t sound good more so to those whose only free time is during the night and apparently, they are the majority. Admittedly, most of us can hardly find ample time to check our social media accounts during the day. As such, the only time we get to do this is during bedtime. Let us find out the risks of using the smartphone during bedtime.</p>
+                                          <p><strong>Increased Risk of Cancer</strong><br>A lot of research has gone into studying the correlation between cancer and the phone. To that effect, credible research findings have established that prolonged use of the smartphone during the night increases the risk of cancer. Here’s how. The “blue light” is part of the electromagnetic spectrum that is responsible for visible light. This particular light has been found to suppress the production of melatonin, a potent antioxidant that acts as a significant body weapon against cancerous agents. The impact of this phenomenon is seldom noticed but with prolonged use of the smartphone at night, one is much more likely to experience health problems. You are therefore advised to keep your bedtime phone usage to the lowest minimum possible.</p>
+                                          <p><strong>Effects on One’s sleeping cycle</strong><br>Sleep deprivation is another common effect of prolonged use of the phone at night. You possibly have experienced insomnia once in a while and you didn’t know its cause. Most times out of ten, you fail to get a good night sleep those days you spent too much time on your phone during bedtime. Failing to get some sleep is not a usual occurrence even though it is common for most smartphone users. What happens is that the blue light interferes with the production of the hormones that regulate the sleep cycle. Therefore, the longer you spend staring at your phone, the higher the chances of having your sleep disrupted. The lack of sleep can have a retrogressive impact on your health since it results in problems such as depression, memory lapses, cardiovascular problems, obesity, and unproductivity.</p>
+                                          <p><strong>Damage to the Eyes</strong><br>Last but not the least, using your phone at night can cause great damage to your eyes. The concentration of light from the phone’s display during bedtime is not as glamorous as it seems. Actually, it gradually destroys the retina and before you know it, your central vision will be damaged, your eye muscles will have degenerated and you could even develop cataracts.</p>
+                                          <p><strong>Conclusion</strong><br>Using your smartphone at night can be inevitable. However, regardless of the emergency, it is important that you minimize the amount of time you spend staring at your phone during bedtime. This way, you will avoid and prevent the risk of cancer, disrupted sleeping cycle and damage to your eyes. Ziegal encourages their customers to use their smart phones smartly and as technology develops they will continue to bring safer mobile phones to you.</p></div>
+                                                  <ul class="meta">
+                                                    <li>Feb 10, 2018</li>
+                                                    <li class="post-categories"><span>Category: </span><a href="/blogs/news">News</a></li>
+                                                    <li> Comments: 0</li>
+                                                  </ul><div class="tags"><a href="/blogs/news/tagged/mobile-phones" title="Narrow search to articles also having tag mobile phones">mobile phones</a>
+                                          <a href="/blogs/news/tagged/smartphones" title="Narrow search to articles also having tag smartphones">smartphones</a>
+                                          </div><div class="box box-no-advanced leave-reply" id="reply-block">
+                                                    <div class="box-heading">Leave a comment</div>
+                                                    <div class="box-content"><form method="post" action="/blogs/news/risks-of-using-your-smartphone-at-night/comments#comment_form" id="comment_form" accept-charset="UTF-8" class="comment-form"><input type="hidden" name="form_type" value="new_comment" /><input type="hidden" name="utf8" value="✓" /><div class="form-horizontal">
+                                                        <div class="form-group required no-gutters">
+                                                          <div class="col-xs-12 col-sm-6">
+                                                            <label class="control-label" for="input-name">Name</label>
+                                                            <input required="required" type="text" id="input-name" class="form-control" name="comment[author]" value="" />
+                                                          </div>
+                                                          <div class="col-xs-12 col-sm-6">
+                                                            <label class="control-label" for="input-email">E-Mail</label>
+                                                            <input required="required" type="email" id="input-email" class="form-control" name="comment[email]" value="" />
+                                                          </div>
+                                                        </div>
+                                                        <div class="form-group required">
+                                                          <div class="col-xs-12">
+                                                            <label class="control-label" for="input-content">Message</label>
+                                                            <textarea required="required" id="input-content" name="comment[body]" rows="10" class="form-control"></textarea>
+                                                          </div>
+                                                        </div>
+                                                        <div class="text-center">
+                                                          <button class="button button-large button-comment" id="button-comment" type="submit">Post comment</button>
+                                                        </div>
+                                                      </div></form></div>
+                                                  </div>
+                                                </div>
+                                              </div>    
+                                            
+
+
+
+
+
+
+                                        </div>
+
+
+
+
+
+
+
+
+                                                        
+                                    </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+</div>
+
+
+
+
+
+
+
+
+
+    
+
+
+    {% include 'inc/footer.html' %}
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

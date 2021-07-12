@@ -1,0 +1,37 @@
+{% extends 'inherit.html' %}
+
+{% block head2 %}
+	<title>{{ title }}</title>
+	<meta name="{{ name }}" content="{{ description }}">
+{% endblock %}
+
+
+{% block body %}
+    {% include 'inc/navbar.html' %}
+
+{#  static page  #}
+
+    <div class="container">
+        <div class="my-3">
+            <h2>ABOUT US</h2>
+            <p>Ziegal Limited want to revolutionize the UK’s mobile phone market by introducing low cost  android smartphones that have outstanding features such as extra long battery life dual sim and expandable memory. Currently all our mobile phone deals can be viewed on our online mobile phone shop and most of the smartphone deals are dual sim which means that the user can have two mobile sims in the same mobile phone.</p>
+        </div>
+
+
+        <div class="my-2">
+            <h2>OUR VISION</h2>
+            <p>Is to empower customers by pushing the boundaries of telecommunication and providing new age communication gateways that make their lives easier, whilst  providing the UK with the best smartphone deals online. Ziegal is also committed to improving the UK’s digital infrastructure and changing the market dynamics with the introduction of cost effective smartphones. Our main focus is to improve customer experience rather than simply being another service provider.</p>
+        </div>
+
+        <div class="my-2">
+            <h2>OUR MISSION STATEMENT</h2>
+            <p>Is to constantly bring innovation to the UK telecommunications industry by helping people to effectively communicate with each other while providing exemplary customer service along the way. Ziegal believe that the needs of customers are the very base on which successful and sustainable businesses are made upon and we make it our customers our utmost priority. This is our core value.</p>
+        </div>
+    </div>
+    {% include 'inc/footer.html' %}
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

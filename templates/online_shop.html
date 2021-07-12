@@ -1,0 +1,138 @@
+{% extends 'inherit.html' %}
+{% load static %}
+
+{% block head2 %}
+    <meta name="{{ name }}" content="{{ description }}">
+    <title>{{ title }}</title>
+{% endblock %}
+
+
+{% block body %}
+    {% include 'inc/navbar.html'%}
+
+{#  wrapping div  #}
+    <div class="my-5">
+
+        {#  filter div  #}
+        <div class="bg-light p-3">
+            <form method="GET" class="d-flex justify-content-around" action="{% url 'online-shop' %}">
+                <select name="category" id="" class="form-control-cart align-self-center">
+                    <option value="">Select a category</option>
+                    <option value="1">Phone</option>
+                    <option value="2">Modems</option>
+                </select>
+
+                <label for="" class="align-self-center">
+                    Price greater than: £ <span id="gt">0</span>
+                </label>
+                <input type="range" name="price__gte" max="500" min="0" value="0" onchange="price_change(event)" class="align-self-center" >
+
+                <label for="" class="align-self-center">
+                    Price lesser than: £ <span id="lt">500</span>
+                </label>
+                <input type="range" name="price__lte" max="500" onchange="price_change(event)" min="0" value="500" class="align-self-center">
+
+                <button class="btn btn-dark">Apply Filters</button>
+                <a href="{% url 'online-shop' %}" class="btn btn-secondary">Remove Filters</a>
+
+            </form>
+        </div>
+
+        {#   queryset div     #}
+        <div class="container my-3 row m-0">
+        {% for items in list %}
+            <div class="my-4 col-lg-4 p-0 ">
+            <div class="border-right border-left" style="width: 80%">
+                {% for item in items.product_img.all %}
+                    {% ifequal forloop.counter 1 %}
+                        <img src="{{ item.get_photo_url }}" height="300px" id="cover_img{{ items.pk }}" class="d-block img-mobile" alt="{{ item.color }}">
+                            <p id="text{{ items.pk }}" class="px-1 m-0" >Color: {{ item.color }}</p>
+
+                    {% endifequal %}
+                            <img src="{{ item.get_photo_url }}" id="small_img{{ items.pk }}" height="30px" width="30px" style="cursor:pointer;" onclick="change_img(event,{{ items.pk }})" class="m-2 img" alt="{{ item.color }}">
+                {% endfor %}
+
+                <div class="p-2">
+                    <h4><a href="{% url 'detail-online-shop' items.slug items.pk %}" class="default_a">{{ items.name }}</a></h4>
+                    <p style="color: red" class="m-0">£ {{ items.price }}</p>
+                    <a onclick="add_to_cart(event,{{ items.pk }})" class="btn btn-dark ">+ ADD TO CART</a>
+                    <a href="{% url 'wishlist-add' items.pk %}" class="default_a"><i class="fas fa-heart"></i></a>
+
+                </div>
+            </div>
+            </div>
+        {% endfor %}
+        </div>
+
+    </div>
+
+    <div style="position: fixed;bottom: -10%;left: 45%;transition: all 0.7s ease-in-out" class="text-white" id="sign">
+        <p class="bg-dark px-2 p-1 " style="border-radius: 6px">Added to cart!</p>
+    </div>
+
+    {% include 'inc/footer.html' %}
+{% endblock %}
+
+<script>
+{% block script %}
+
+    const imgs = document.getElementsByClassName('img')
+    const p = document.getElementsByClassName('color')
+
+    for (let i=0;i<imgs.length;i++) {
+
+
+        if (imgs[0].src === imgs[i].src&&(i!==0)) {
+            imgs[i].style.border = '1px solid black'
+
+        }
+
+    }
+
+    function change_img(e,pk){
+        const p = document.getElementById(`text${pk}`)
+        const cover = document.getElementById(`cover_img${pk}`)
+
+        cover.src = e.target.src
+        for (let i=1;i<imgs.length;i++) {
+            imgs[i].style.border = 'none'
+
+
+    }
+        e.target.style.border = '1px solid black'
+        p.innerHTML = `Color: ${e.target.alt}`
+    }
+
+
+    function add_to_cart(e,pk){
+        const sign = document.getElementById('sign')
+        const img = document.getElementById(`cover_img${pk}`)
+        const color = img.alt
+        const base_url = location.origin
+        fetch(`${base_url}/add-to-cart/${pk}/1/${color}/`)
+        .then((res)=>{
+            return res.json()
+        })
+        .then((result)=>{
+            if (result.added === 'redirect'){
+                location.replace(`${base_url}/login/`)
+            }
+            else {
+                sign.style.bottom = 10 + '%'
+                setTimeout(() => {
+                    sign.style.bottom = -10 + '%'
+                }, 1500)
+                count()
+            }
+        })
+
+    }
+
+
+    function price_change(e){
+        console.log(e.target.value)
+        e.target.previousElementSibling.firstElementChild.innerHTML = parseInt(e.target.value)
+    }
+
+{% endblock %}
+</script>

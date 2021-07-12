@@ -1,0 +1,36 @@
+{% extends 'inherit.html' %}
+{% load static %}
+
+{% block head2 %}
+
+{% endblock %}
+
+
+{% block body %}
+    {% include 'inc/navbar.html'%}
+
+{#  wrapping div  #}
+    {% if list %}
+    <div class="container my-3 p-2 border-top border-bottom">
+    {% for item in list %}
+        <div>
+            <h3><b>Name:</b> {{ item.name }}</h3>
+            <p class="m-0"><b>Category</b>{{ item.category }}</p>
+            <p class="m-0">{{ item.features|safe|truncatewords_html:10 }}</p>
+        </div>
+    {% endfor %}
+    </div>
+    {% else %}
+
+        <div class="alert alert-primary text-center my-3 p-2">
+            We could not find anything that matches your query!
+        </div>
+
+    {% endif %}
+    {% include 'inc/footer.html' %}
+{% endblock %}
+
+
+{% block script %}
+
+{% endblock %}

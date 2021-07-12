@@ -1,0 +1,97 @@
+{% extends 'inherit.html' %}
+{% block head2 %}
+	<meta name="description" content="description">
+	<title>Ziegal PVT - Cart</title>
+{% endblock %}
+{% block body %}
+    {% include 'inc/navbar.html' %}
+
+    {#  wrapping div  #}
+    {% if list %}
+    <div class="container my-4">
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Price (£)</th>
+                    <th>Qty</th>
+                    <th class="text-center">Option</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in list %}
+                    <tr>
+                        <td>{{ item.product.name }}</td>
+                        <td>{{ item.product.category }}</td>
+                        <td>{{ item.product.price }}</td>
+                        <td><input onchange="update(event,{{ item.product.pk }})" type="number" class="form-control-cart" value="{{ item.qty }}"></td>
+                        <td class="text-center"><a onclick="delete_call(event,{{ item.product.pk }})" style="color:red;cursor: pointer">x</a></td>
+                    </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+
+    <div>
+        <h4>Grand Total: £<span>{{ price }}</span></h4>
+        <a href="{% url 'checkout' %}" class="btn btn-dark">Proceed to checkout</a>
+    </div>
+    </div>
+    {% else %}
+    <div class="alert alert-primary text-center my-5 p-2" role="alert">
+        Nothing in the cart. <a href="{% url 'online-shop' %}">Start Shopping</a>
+    </div>
+    {% endif %}
+
+
+
+    {#  popup for ajax calls  #}
+    <div style="position: fixed;bottom: -10%;left: 45%;transition: all 0.7s ease-in-out;z-index: 1" class="text-white;" id="sign">
+        <p class="bg-dark px-2 p-1 " style="color:white;border-radius: 6px">Cart updated!</p>
+    </div>
+    {% include 'inc/footer.html' %}
+{% endblock %}
+<script>
+{% block script %}
+    const sign = document.getElementById('sign')
+
+    {#  update ajax call  #}
+    function update(e,pk){
+    fetch(`${base_url}/update-cart/${pk}/${e.target.value}/`)
+    .then((res)=>{
+        return res.json()
+
+    })
+    .then((result)=>{
+        sign.style.bottom = 10+'%'
+        setTimeout(()=>{
+            sign.style.bottom = -10+'%'
+            location.reload()
+        },1000)
+
+    })
+}
+
+{# delete ajax call #}
+    function delete_call(e,pk){
+        fetch(`${base_url}/delete-cart/${pk}/`)
+    .then((res)=>{
+        return res.json()
+
+    })
+    .then((result)=>{
+        sign.firstElementChild.innerHTML = 'Removed from cart!'
+        sign.style.bottom = 10+'%'
+        setTimeout(()=>{
+            sign.style.bottom = -10+'%'
+            location.reload()
+        },1000)
+        count()
+
+    })
+    }
+
+{% endblock %}
+</script>

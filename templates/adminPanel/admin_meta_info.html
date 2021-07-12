@@ -1,0 +1,12 @@
+{% extends 'adminPanel/admin_home.html' %}
+{% load bootstrap4 %}
+{% block content %}
+    <div style="width: 40%;margin: auto" class="p-5 border my-5">
+        <form action="{% url 'adminPanel:meta-info' %}" method="POST">
+            {% csrf_token %}
+            <h2 class="text-center">Meta Form</h2>
+            {% bootstrap_form form %}
+            <button class="btn btn-dark">Submit</button>
+        </form>
+    </div>
+{% endblock %}

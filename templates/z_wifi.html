@@ -1,0 +1,144 @@
+{% extends 'inherit.html' %}
+{% load static %}
+
+{% block head2 %}
+    <meta name="{{ name }}" content="{{ description }}">
+    <title>{{ title }}</title>
+{% endblock %}
+
+
+{% block body %}
+    {% include 'inc/navbar.html'%}
+
+{#  wrapping div  #}
+    <div>
+        <!-- <div>
+            youtube video
+        </div> -->
+        <!-- <div class="container">
+            <p>Ziegal is ready to boost the UK's global internet ranking, and provide all UK citizens with a low cost, fibre optic internet connectivity for both fixed line broadband and mobile data</p>
+            <p>Combining years of research and development Z-WiFi is ready to deploy our real time pilot, revolutionizing the way we connect to the internet. With the ability to quickly reach the whole of the UK, including the most remote locations and hard to reach areas with extremely high installation costs from current fibre optic providers.</p>
+            <p>Z-WiFi will be a stable, affordable, flexible and completely mobile internet connection, offering users free trials and no long contracts. It has the potential to replace both mobile data and home broadband as we know it. Designed to cater to growing needs and advancing technology, Z-WiFi is the internet connection of the future.</p>
+            <p>Why does this UK need another internet provider?</p>
+            <p>Right now, the majority of the UK has two ways to connect internet, fixed line or cellular and 75% of the UK is connected via copper cable. The market is flooded with service providers that have rebranded under this same infrastructure, but this does not deal with the rising demand for more bandwidth.</p>
+            <p>The Z-WiFi network will provide sufficient low cost internet access to all users and more Bandwidth means your family can use all there devices at the same time without causing congestion.</p>
+            <p>Z-WiFi will supply digital connectivity for all devices i.e computers, laptops, smartphones, cars, drones, buildings, infrastructure and all IoT applications basically anything with a WiFi connection.</p>
+
+            <p>Low power consumption, it will prove to be better for the environment.</p>
+            
+        </div>
+    </div> -->
+    <!-- <section id="featured-destinations" class="featured-destinations bg-lightblue">
+      <div class="row no-gutters">
+        <div class="col-12 col-md-6 d-flex align-items-center order-1 order-md-0">
+          <div class="p-15">demo</div>
+        </div>
+        <div class="col-12 col-md-6 order-0 order-md-1">
+          <div class="vh-100 cover" style="bakground-image:url();">
+            <img src="{% static 'imgs/dualsim3.PNG' %}">
+            Ziegal is ready to boost the UK's global internet ranking, 
+            and provide all UK citizens with a low cost, fibre optic internet connectivity
+             for both fixed line broadband and mobile data</div>
+        </div>
+        <div class="col-12 col-md-6 order-2">
+          <div class="vh-100 cover" style="bakground-image:url(../static/imgs/vertical.jpg);">Combining years of research and development Z-WiFi is ready to deploy our real time pilot, revolutionizing the way we connect to the internet. With the ability to quickly reach the whole of the UK, including the most remote locations and hard to reach areas with extremely high installation costs from current fibre optic providers.</div>
+        </div>
+        <div class="col-12 col-md-6 d-flex align-items-center order-3">
+          <div class="p-15">demo</div>
+        </div>
+      </div>
+    </section> -->
+    <section class="bg-light">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-6 order-2 order-lg-1">
+                  <h1>Lets Know About Z-Wifi</h1>
+                  <p class="lead">Ziegal is ready to boost the UK's global internet ranking, and provide all UK citizens with a low cost, fibre optic internet connectivity for both fixed line broadband and mobile data</p>
+                  <p class="lead">Combining years of research and development Z-WiFi is ready to deploy our real time pilot, revolutionizing the way we connect to the internet. With the ability to quickly reach the whole of the UK, including the most remote locations and hard to reach areas with extremely high installation costs from current fibre optic providers. </p>
+                  <p><a href="#" class="btn btn-primary shadow mr-2">Learn More</a><a href="#" class="btn btn-outline-primary">An extra button</a></p>
+              </div>
+          <div class="col-lg-6 order-1 order-lg-2"><img src="{% static 'imgs/bb2.PNG' %}" alt="landing image" class="img-fluid"></div>
+      </div>
+  </div>
+  </section>
+
+
+  <section id="process" class="process">
+    <div class="container-fluid container-fluid-max">
+      <div class="row text-center py-5">
+        <div class="col-12 pb-4">
+          <h2 class="text-red">Features</h2>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3">
+            <span class="fa-stack fa-2x">
+              
+              <i class="fa fa-wifi" aria-hidden="true"></i>
+            </span>
+            <h3 class="mt-3 text-red h4">Stuning Network</h3>
+            <p>Future proof network with speeds up to 9.5Gbs</p>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <span class="fa-stack fa-2x">
+                <i class="fa fa-rocket" aria-hidden="true"></i>
+
+            </span>
+            <h3 class="mt-3 text-red h4">Speed</h3>
+            <p>Symmetrical upload and download speeds</p>
+          </div>  
+          <div class="col-12 col-sm-6 col-lg-3">
+            <span class="fa-stack fa-2x">
+              <i class="fa fa-bolt" aria-hidden="true"></i>
+
+
+            </span>
+            <h3 class="mt-3 text-red h4">Access</h3>
+            <p>Instant Access, No Installation</p>
+          </div>
+          
+          <div class="col-12 col-sm-6 col-lg-3">
+            <span class="fa-stack fa-2x">
+              <i class="fa fa-cogs" aria-hidden="true"></i>
+
+
+            </span>
+            <h3 class="mt-3 text-red h4">Deployment</h3>
+            <p>Fast national deployment</p>
+          </div>
+
+         
+        
+        <div class="col-12 pt-3">
+          <a class="btn bg-red text-white" target="_blank" href="" role="button">deomo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 order-2 order-lg-1">
+                <h1>Why Z-Wifi?</h1>
+                <p class="lead">Right now, the majority of the UK has two ways to connect internet, fixed line or cellular and 75% of the UK is connected via copper cable. The market is flooded with service providers that have rebranded under this same infrastructure, but this does not deal with the rising demand for more bandwidth.</p>
+                <p class="lead">The Z-WiFi network will provide sufficient low cost internet access to all users and more Bandwidth means your family can use all there devices at the same time without causing congestion.</p>
+            </div>
+        <div class="col-lg-6 order-1 order-lg-2"><br><br>
+                  <p class="lead">Z-WiFi will supply digital connectivity for all devices i.e computers, laptops, smartphones, cars, drones, buildings, infrastructure and all IoT applications basically anything with a WiFi connection.</p>
+                  <p class="lead">Low power consumption, it will prove to be better for the environment.</p>
+        </div>
+    </div>
+  </div>
+  </section><br><br>
+
+
+    
+
+    {% include 'inc/footer.html' %}
+{% endblock %}
+
+
+{% block script %}
+
+{% endblock %}

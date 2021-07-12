@@ -1,0 +1,39 @@
+{% extends 'inherit.html' %}
+
+{% block head2 %}
+
+{% endblock %}
+
+{% block body %}
+    {% include 'inc/navbar.html' %}
+        <div class="p-5 border my-5 form-width" style="width: 40%;margin: auto">
+        <form action="" method="POST" >
+            {% if messages %}
+            {% for msg in messages %}
+                <p class="alert alert-primary text-center">{{ msg }}</p>
+            {% endfor %}
+        {% endif %}
+            {% csrf_token %}
+            <h2 class="text-center my-2">Login</h2>
+
+            <label for="" class="d-block">
+                Email
+                <input placeholder="Email" type="email" name="email" class="form-control">
+            </label>
+
+            <label for="" class="d-block mt-2">
+                Password
+                <input placeholder="Password" type="password" name="password" class="form-control">
+            </label>
+
+            <button class="btn btn-dark w-100">Login</button>
+            <small>No account?<a href="{% url 'signup' %}">Register here</a></small>
+        </form>
+    </div>
+    {% include 'inc/footer.html' %}
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

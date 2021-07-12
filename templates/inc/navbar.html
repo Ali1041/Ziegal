@@ -1,0 +1,84 @@
+{% extends 'inherit.html' %}
+{% load static %}
+
+{% block head %}
+
+
+{% endblock %}
+{% block body %}
+
+
+    {#  upper navbar  #}
+    <div class="border-bottom">
+        <div class="d-flex justify-content-between border-right p-2 width100" style="width: 80%;margin: auto">
+            <p class="m-0 align-self-center text1" >GBP</p>
+            <div>
+                {% if user.is_superuser %}
+                    <a href="{% url 'adminPanel:admin-home' %}" class="align-self-center pr-2 default_a text1">ADMIN PANEL</a>
+                {% endif %}
+                {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="align-self-center pr-2 default_a text1">LOGOUT</a>
+
+                {% else %}
+                    <a href="{% url 'login' %}" class="align-self-center default_a text1">LOGIN</a>
+                    <a href="{% url 'signup' %}" class="align-self-center default_a px-2 text1">REGISTER</a>
+
+                {% endif %}
+                <a href="{% url 'wishlist' %}" class="default_a align-self-center pr-2 text1">WISH LIST</a>
+            </div>
+        </div>
+    </div>
+
+
+    {#  lower navbar for desktops #}
+    <div class=" justify-content-around p-2 bg-white" id="desktop" style="z-index: 1;position: sticky;top: 0;display: none;width: 100%;margin: auto">
+        <div >
+            <img onclick="home()" src="{% static 'imgs/ipad_icon_retina.png' %}" style="cursor: pointer" alt="Ziegal Logo">
+        </div>
+        <a href="{% url 'dual-sims' %}" class="align-self-center default_a">Dual Sims</a>
+        <a href="{% url 'online-shop' %}" class="align-self-center default_a">Online Shop</a>
+        <a href="{% url 'monthly-deals' %}" class="align-self-center default_a">Pay Monthly Deals</a>
+        <a href="{% url 'broadband_deals' %}" class="align-self-center default_a">BroadBands Deals</a>
+        <a href="{% url 'z-wifi' %}" class="align-self-center default_a">Z-Wifi</a>
+        <a href="{% url 'cart' %}" class="align-self-center default_a">
+            <img src="{% static 'imgs/cart2.svg' %}" height="20px" alt=""></a>
+        {% if user.is_authenticated %}
+        <small class="bg-dark text-white px-1" style="border-radius:50% ;height: fit-content;position: relative;left: -3%" id="count">{{ count }}</small>
+        {% endif %}
+        <div class="d-flex">
+            <input onchange="search(event)" type="text" placeholder="Search....." class="align-self-center form-control align-self-center" style="display: inline-block">
+            <a class="btn btn-dark text-white align-self-center py-2"><i class="fas fa-search"></i></a>
+        </div>
+    </div>
+
+
+    {#  lower navbar for mobiles  #}
+    <div id="mobile">
+        <div class="text-center my-3">
+            <img onclick="home()" src="{% static 'imgs/ipad_icon_retina.png' %}" style="cursor: pointer" alt="Ziegal Logo">
+        </div>
+
+        <div style="margin: auto;width: fit-content" >
+            <p class="menu-button" onclick="animateMenu(event)">Menu</p>
+
+        </div>
+
+        <div class="menu text-center fade-out" style="height:0;visibility: hidden;margin: auto;width: fit-content" id="menu">
+            <a href="{% url 'dual-sims' %}" class="text-center default_a">Dual Sims</a>
+            <a href="{% url 'online-shop' %}" class="align-self-center default_a">Online Shop</a>
+            <a href="{% url 'monthly-deals' %}" class="align-self-center default_a">Pay Monthly Deals</a>
+            <a href="{% url 'broadband_deals' %}" class="align-self-center default_a">BroadBands Deals</a>
+            <a href="{% url 'z-wifi' %}" class="align-self-center default_a">Z-Wifi</a>
+            <a href="{% url 'cart' %}" class="align-self-center default_a">
+            <img src="{% static 'imgs/cart2.svg' %}" height="20px" alt=""></a>
+        </div>
+    </div>
+{% endblock %}
+
+<!-- 
+<script defer>
+    {% block script %}
+    
+    
+    {% endblock %}
+    </script> -->
