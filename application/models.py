@@ -52,7 +52,7 @@ class Product(models.Model):
     meta_name = models.CharField(max_length=255, default='description')
     meta_description = models.TextField(default='description')
     slug = models.SlugField(max_length=255, default='slug')
-    # learn_more = models.TextField(blank=True,null=True)
+    learn_more = models.TextField(blank=True,null=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
