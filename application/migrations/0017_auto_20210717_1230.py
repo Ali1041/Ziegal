@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='product',
             name='averageRating',
-            field=models.DecimalField(decimal_places=2, default='Some String', max_digits=3),
+            field=models.DecimalField(decimal_places=2, default=1.4, max_digits=3),
         ),
         migrations.AlterField(
             model_name='rating',
