@@ -76,7 +76,10 @@ urlpatterns = [
     path('blog-list/best-battery/',best_battery,name='best-battery'),
     path('blog-list/best-mobile/',best_mobile,name='best-mobile'),
     path('blog-list/frustrated-uk/',frustrated_uk,name='frustrated-uk'),
-     path('blog-list/investment/',investment,name='investment'),
+    path('blog-list/investment/',investment,name='investment'),
+
+    # path("rating/",rating,name="rating"),
+
 
 
     # path('online_shop/',online_shop,'online_shop.html')

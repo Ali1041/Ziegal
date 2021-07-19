@@ -176,12 +176,13 @@ from google.oauth2 import service_account
 GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
     os.path.join(BASE_DIR, 'credential.json')
 )
-DEFAULT_FILE_STORAGE = 'Ecommerce.gcloud.GoogleCloudMediaFileStorage'
+# DEFAULT_FILE_STORAGE = 'Ecommerce.gcloud.GoogleCloudMediaFileStorage'
 GS_PROJECT_ID = 'ziegal'
 GS_BUCKET_NAME = 'ziegal-bucket'
 MEDIA_ROOT = "media/"
 UPLOAD_ROOT = 'media/'
-MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(GS_BUCKET_NAME)
+MEDIA_URL =  'media/'
+# 'https://storage.googleapis.com/{}/'.format(GS_BUCKET_NAME)
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),

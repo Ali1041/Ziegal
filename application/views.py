@@ -407,3 +407,29 @@ def investment(request):
 #     ctx['description'] = meta.mission_description
 #     return render(request, 'wifi_extender.html')
 
+
+
+
+
+
+# def rating(request):
+#     product = Product.objects.all()
+#     rating = Rating.objects.all()
+#     dict = {}
+#     for line in rating:
+#         if dict.get(line.product.productName):
+#             dict[line.product.productName] = (dict[line.product.productName] + line.rating)/2
+#         else:
+#             dict.update({line.product.productName:line.rating})
+    
+#     return render(request,'review.html',{'product':product})
+    #  if request.method=="Get":
+    #     product = request.GET['product']
+    #     rating=request.GET['rating']
+    #     user=request.GET['user']
+    #     comment=request.GET['comment']
+    #     # print(name, email, desc)
+
+    #     ins = rating(product=product,rating=rating,user=user,comment=comment)
+    #     ins.save()
+    #     print("the data has been written to the db")

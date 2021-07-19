@@ -1,14 +1,19 @@
 {% extends 'inherit.html' %}
+{% load static %}
 
 {% block head2 %}
+
+
 
 {% endblock %}
 
 
 {% block body %}
 
+{% include 'inc/navbar.html' %}
+
     {# wrapper div   #}
-    <div class="my-3">
+    <div class="container my-5">
 
 
         {#    buttons div    #}
@@ -16,21 +21,176 @@
             <a href="{% url 'blog-list' %}" class="btn btn-secondary">Back</a>
         </div>
 
-        {#    image div        #}
-        <div style="width: 82%;margin: auto">
-            <img src="{{ detail.get_photo_url }}" width="100%" height="500px" alt="">
-        </div>
+
+        <div class="container my-5">
+
+ 
+
+      
+
+            <div id="PageContainer">
+                
+                <div class="main-content  ">
+                                <div class="background-content"></div>
+                     <div class="background">
+                                  <div class="shadow"></div>
+                        <div class="pattern">
+                            <div class="page-width">
+                                 <div class="container px-2 pb-5">
+                                                <div class="row">
+                                                    <div id="col-main" class="center-column content-with-background blog-page col-md-9 col-sm-12">
+                                                        <div class="posts">
+
+                                                            {#    image div        #}
+                                                            <div >
+                                                                <img src="{{ detail.get_photo_url }}" width="80%"  height="50%" >
+                                                            </div>
+    
+    
+                                                            {#   blog content div     #}
+    
+                                                            <div s>
+                                                                <h3>{{ detail.title }}</h3>
+                                                                <small>{{ detail.date }}</small>
+                                                                <p>{{ detail.text|safe }}</p>
+                                                            </div>
+    
+                                                            
+                                                            
+                                                                        
+                                                        </div>
+
+                                                        <div class="box box-no-advanced leave-reply" id="reply-block">
+                                                            <div class="text-center"><h4>Leave a comment</h4></div>
+                                
+                                                            <div class="box-content">
+                                                                <form method="post" action="/blogs/news/wifi-extender-booster-could-it-boost-or-extend-your-wireless-signal/comments#comment_form" id="comment_form" accept-charset="UTF-8" class="comment-form"><input type="hidden" name="form_type" value="new_comment" /><input type="hidden" name="utf8" value="✓" />
+                                                                    <div class="form-horizontal">
+                                                                        <div class="form-group required no-gutters">
+                                                                            <div class="col-xs-12 col-sm-6">
+                                                                                <label class="control-label" for="input-name">Name:</label>
+                                                                                <input required="required" placeholder="Name" type="text" id="input-name" class="form-control" name="comment[author]" value="" />
+                                                                            </div>
+                                                                            <div class="col-xs-12 col-sm-6">
+                                                                                <label class="control-label" for="input-email">E-Mail:</label>
+                                                                                <input required="required" placeholder="Email Address" type="email" id="input-email" class="form-control" name="comment[email]" value="" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group required">
+                                                                            <div class="col-xs-12">
+                                                                                <label class="control-label" for="input-content">Message:</label>
+                                                                                <textarea required="required" placeholder="Your Message" id="input-content" name="comment[body]" rows="10" class="form-control"></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="text-center">
+                                                                            <button class="btn btn-secondary" id="button-comment" type="submit">Post comment</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                    </div>
+                                                        </div>
+                                                                        
+                                                                        
+            
+                                                    </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+                                                                    <div id="sidebar" class="col-md-3 col-sm-12">
+                                                                        <div class="box blog-module blog-popular-posts box-no-advanced">
+                                                                            <div class="box-heading"><h3>Recent Posts</h3></div>
+                                                                                <div class="strip-line"></div><br><br>
+                                                                                        <div class="box-content box-popular-posts">
+                                                                                                    <ul class="blog-list-default">
+                                                                                                        <!-- <li> -->
+                                                                                                        <div class="media">
+                                                                                                            <a href="/blogs/news/wifi-extender-booster-could-it-boost-or-extend-your-wireless-signal"><div class="thumb-holder">
+                                                                                                                <img alt="WiFi extender booster could it boost or extend your wireless signal?" src="//cdn.shopify.com/s/files/1/1852/8453/articles/Wifi_extender_booster_100x130_crop_top.jpg?v=1610386321" />
+                                                                                                            </div>
+                                                                                                            <div class="media-body" style="color: black;">
+                                                                                                                <div class="date-published">Jan 28, 2020</div>
+                                                                                                                <h5>WiFi extender booster could it boost or extend your wireless signal?</h5>
+                                                                                                            </div>
+                                                                                                            </a>
+                                                                                                        </div>
+                                                                                                        <!-- </li> -->
+                                                                                                        <!-- <li> -->
+                                                                                                        <div class="media">
+                                                                                                            <a href="/blogs/news/argos-mobile-phone-alternatives"><div class="thumb-holder">
+                                                                                                                <img alt="Argos mobile phone alternatives from Ziegal starting from just £99" src="//cdn.shopify.com/s/files/1/1852/8453/articles/argos_mobile_phone_alternative_100x130_crop_top.jpg?v=1546872183" />
+                                                                                                            </div><div class="media-body" style="color: black;">
+                                                                                                                <div class="date-published">Jan 08, 2019</div>
+                                                                                                                <h5>Argos mobile phone alternatives from Ziegal starting from just £99</h5>
+                                                                                                            </div>
+                                                                                                            </a>
+                                                                                                        </div>
+                                                                                                        <!-- </li> -->
+                                                                                                        <!-- <li> -->
+                                                                                                        <div class="media">
+                                                                                                            <a href="/blogs/news/privacy-settings-on-your-android-mobile-phone-you-should-consider-changing"><div class="thumb-holder">
+                                                                                                                <img alt="Privacy settings on your android mobile phone you should consider changing." src="//cdn.shopify.com/s/files/1/1852/8453/articles/mobile_phone_privacy_100x130_crop_top.jpg?v=1528414458" />
+                                                                                                            </div><div class="media-body" style="color: black;">
+                                                                                                                <div class="date-published">Aug 01, 2018</div>
+                                                                                                                <h5>Privacy settings on your android mobile phone you should consider changing.</h5>
+                                                                                                            </div>
+                                                                                                            </a>
+                                                                                                        </div>
+                                                                                                        <!-- </li> -->
+                                                                                                    </ul>
+                                                                                        </div>
+                                                                        </div>
+            
+            
+            
+                                                                      
+            
+                                                                    </div>
+            
+            
+            
+            
+                                                </div>
+                                </div>                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                
+            </div>
+            
+
+    
+
+</div>
+
+</div>
 
 
-        {#   blog content div     #}
 
-        <div class="container my-2">
-            <h3>{{ detail.title }}</h3>
-            <small>{{ detail.date }}</small>
-            <p>{{ detail.text|safe }}</p>
-        </div>
-    </div>
 
+
+        
+    
+
+
+      
+
+
+
+
+{% include 'inc/footer.html' %}
 {% endblock %}
 
 
