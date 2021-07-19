@@ -15,24 +15,13 @@
     {% include 'inc/navbar.html' %}
     {# wrapper div   #}
 
-    <div class="container">
+    <div class="container my-5">
 
-    {# list of all blogs   #}
+ 
 
-        {% for item in list %}
-            <!-- <div class="border-top border-bottom p-2 my-3 d-flex justify-content-between">
-                <div>
-                    <h3><a href="{% url 'blog-detail' item.slug item.pk %}" style="color:inherit">{{ item.title }}</a></h3>
-                    <small>{{ item.date }}</small>
-                    <p>{{ item.text|safe|truncatewords_html:30 }}</p>
-                </div>
-                <div>
-                    <img src="{{ item.get_photo_url }}" height="200px" style="max-width: 100%" alt="{{ item.title }}">
+      
 
-                </div>
-            </div> -->
-
-        <div id="PageContainer">
+            <div id="PageContainer">
                 
                 <div class="main-content  ">
                                 <div class="background-content"></div>
@@ -44,151 +33,30 @@
                                                 <div class="row">
                                                     <div id="col-main" class="center-column content-with-background blog-page col-md-9 col-sm-12">
                                                         <div class="posts">
+                                                            {% for item in list %}
                                                             <div class="post">
                                                                 <div class="post-content " >
                                                                     <div class="post-media">
-                                                                    <!-- <img alt="WiFi extender booster could it boost or extend your wireless signal?" class="lazyload" src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' data-src="//cdn.shopify.com/s/files/1/1852/8453/articles/Wifi_extender_booster_1200x679_crop_top.jpg?v=1610386321" /> -->
-                                                                    <img width="80%" src="../static/imgs/wifi.jpg">
+                                                                    <img width="100%" src="{{ item.get_photo_url }}">
                                                                     </div>
                                                                     <div class="tags">
-                                                                    <a href="/blogs/news/tagged/home-wifi-booster" title="Narrow search to articles also having tag home wifi booster">home wifi booster</a>
-                                                                    <a href="/blogs/news/tagged/plug-extender" title="Narrow search to articles also having tag plug extender">plug extender</a>
+                                                                    <a href="{% url 'blog-detail' item.slug item.pk %}">{{ item.title }}</a>
                                                                     </div>
                                                                         <div class="date-published">Jan 28, 2020</div>
                                                                     <h2 class="post-title">
-                                                                    <a href="/blogs/news/wifi-extender-booster-could-it-boost-or-extend-your-wireless-signal">WiFi extender booster could it boost or extend your wireless signal?</a>
+
                                                                     </h2>
-                                                                    <div class="post-description">Do WiFi booster's actually work? Will it extend your WiFi signal? This article explains exactly how to install and extend your WiFi signal using a plug in booster.
+                                                                    <div class="post-description">{{ item.text|truncatechars_html:170|safe}}
                                                                     </div>
-                                                                    <a href="wifi/" class="button-more btn--secondary-accent">Read more</a>
+                                                                    <div class="text-center">
+
+                                                                    <a href="{% url 'blog-detail' item.slug item.pk %}"  class="button-more btn--secondary-accent">Read more</a><br><br>
+                                                                    </div>
                                                                     
                                                                 </div>       
                                                             </div>
-                                                            <div class="post">
-                                                                <div class="post-content">
-                                                                    <div class="post-media">
-                                                                                <img width="80%"  src="../static/imgs/mob1.jpg">
-                                                                                <!-- <img alt="Argos mobile phone alternatives from Ziegal starting from just £99" class="lazyload" src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' data-src="//cdn.shopify.com/s/files/1/1852/8453/articles/argos_mobile_phone_alternative_1200x679_crop_top.jpg?v=1546872183" /> -->
-                                                                    </div>
-                                                                    <div class="tags">
-                                                                                        <a href="/blogs/news/tagged/argos-mobile-phone-alternatives" title="Narrow search to articles also having tag argos mobile phone alternatives">argos mobile phone alternatives</a>
-                                                                                        <a href="/blogs/news/tagged/mobile-phones" title="Narrow search to articles also having tag mobile phones">mobile phones</a>
-                                                                    </div>
-                                                                                    <div class="date-published">Jan 08, 2019</div>
-                                                                                    <h2 class="post-title">
-                                                                                        <a href="/blogs/news/argos-mobile-phone-alternatives">Argos mobile phone alternatives from Ziegal starting from just £99</a>
-                                                                                    </h2>
-                                                                    <div class="post-description">The article compares the argos mobile phone range to some of our mobile devices which are unlocked to any network and with dual sim capabilities.
-                                                                    </div>
-                                                                            <a href="argos-mobile/" class="button-more btn--secondary-accent">Read more</a>
-                                                                </div>       
-                                                            </div>
-                                                            <div class="post">
-                                                                            <div class="post-content"><div class="post-media">
-                                                                                <img width="80%" src="../static/imgs/1.jpg">
-                                                                                <!-- <img alt="Privacy settings on your android mobile phone you should consider changing." class="lazyload" src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' data-src="//cdn.shopify.com/s/files/1/1852/8453/articles/mobile_phone_privacy_1200x679_crop_top.jpg?v=1528414458" /> -->
-                                                                            </div><div class="tags"><a href="/blogs/news/tagged/android-setting" title="Narrow search to articles also having tag android setting">android setting</a>
-                                                                    <a href="/blogs/news/tagged/mobile-phone-settings" title="Narrow search to articles also having tag mobile phone settings">mobile phone settings</a>
-                                                                    </div><div class="date-published">Aug 01, 2018</div>
-                                                                            <h2 class="post-title">
-                                                                                <a href="/blogs/news/privacy-settings-on-your-android-mobile-phone-you-should-consider-changing">Privacy settings on your android mobile phone you should consider changing.</a>
-                                                                            </h2>
-                                                                            <div class="post-description">Recently we have witnessed a rapid advancement of technology in different areas of life, technology has been seen as something...
-                                                                    </div>
-                                                                            <a href="privacy-blog/" class="button-more btn--secondary-accent">Read more</a>
-                                                                            </div>       
-                                                            </div>
-                                                            <div class="post">
-                                                                            <div class="post-content"><div class="post-media">
-                                                                                <img width="80%" src="../static/imgs/1 (5).jpg">
-                                                                                <!-- <img alt="The Best Smartphone? - Android vs iPhone" class="lazyload" src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' data-src="//cdn.shopify.com/s/files/1/1852/8453/articles/android_vs_Iphone_1200x679_crop_top.jpg?v=1519603967" /> -->
-                                                                            </div><div class="tags"><a href="/blogs/news/tagged/best-mobile-phone-deals" title="Narrow search to articles also having tag best mobile phone deals">best mobile phone deals</a>
-                                                                    <a href="/blogs/news/tagged/iphone-vs-android" title="Narrow search to articles also having tag Iphone vs Android">Iphone vs Android</a>
-                                                                    </div><div class="date-published">Feb 26, 2018</div>
-                                                                            <h2 class="post-title">
-                                                                                <a href="/blogs/news/the-best-smartphone-android-vs-iphone">The Best Smartphone? - Android vs iPhone</a>
-                                                                            </h2>
-                                                                            <div class="post-description">When it comes to purchasing the best mobile phone deal, it is rational to explore the options available to you....
-                                                                    </div>
-                                                                            <a href="best-smartphone/" class="button-more btn--secondary-accent">Read more</a>
-                                                                            </div>       
-                                                            </div>
-                                                            <div class="post">
-                                                                            <div class="post-content"><div class="post-media">
-                                                                                <img width="80%" src="../static/imgs/1 (2).jpg">
-                                                                                <!-- <img alt="Risks of Using Your Smartphone at Night" class="lazyload" src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' data-src="//cdn.shopify.com/s/files/1/1852/8453/articles/use_of_mobile_in_bed_1200x679_crop_top.jpg?v=1518303496" /> -->
-                                                                            </div><div class="tags"><a href="/blogs/news/tagged/mobile-phones" title="Narrow search to articles also having tag mobile phones">mobile phones</a>
-                                                                    <a href="/blogs/news/tagged/smartphones" title="Narrow search to articles also having tag smartphones">smartphones</a>
-                                                                    </div><div class="date-published">Feb 10, 2018</div>
-                                                                            <h2 class="post-title">
-                                                                                <a href="/blogs/news/risks-of-using-your-smartphone-at-night">Risks of Using Your Smartphone at Night</a>
-                                                                            </h2>
-                                                                            <div class="post-description">The smartphone has become an integral part of the modern individual. I mean, it’s virtually impossible to function without one....
-                                                                    </div>
-                                                                            <a href="risks-blog/" class="button-more btn--secondary-accent">Read more</a>
-                                                                            </div>       
-                                                            </div>
-                                                            <div class="post">
-                                                                            <div class="post-content"><div class="post-media">
-                                                                                <img width="80%" src="../static/imgs/1 (8).jpg">
-                                                                                <!-- <img alt="Best Battery Life Smartphones" class="lazyload" src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' data-src="//cdn.shopify.com/s/files/1/1852/8453/articles/mobile_phone_battery_1200x679_crop_top.jpg?v=1521243473" /> -->
-                                                                            </div><div class="tags"><a href="/blogs/news/tagged/best-battery-life" title="Narrow search to articles also having tag best battery life">best battery life</a>
-                                                                    <a href="/blogs/news/tagged/best-mobile-phone-deals" title="Narrow search to articles also having tag best mobile phone deals">best mobile phone deals</a>
-                                                                    </div><div class="date-published">Jan 20, 2018</div>
-                                                                            <h2 class="post-title">
-                                                                                <a href="/blogs/news/best-battery-life-smartphones">Best Battery Life Smartphones</a>
-                                                                            </h2>
-                                                                            <div class="post-description">3 Of The Best Battery Life Mobile Phones Your phone battery is like the heart of your beloved device, pumping...
-                                                                    </div>
-                                                                            <a href="best-battery/" class="button-more btn--secondary-accent">Read more</a>
-                                                                            </div>       
-                                                            </div>  
-                                                            <div class="post">
-                                                                            <div class="post-content"><div class="post-media">
-                                                                                <img width="80%" src="../static/imgs/1 (6).JPG">
-                                                                                <!-- <img alt="Best Mobile Phone Deals 2018" class="lazyload" src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' data-src="//cdn.shopify.com/s/files/1/1852/8453/articles/best_mobile_phone_1200x679_crop_top.JPG?v=1521244112" /> -->
-                                                                            </div><div class="tags"><a href="/blogs/news/tagged/best-mobile-phone-deals" title="Narrow search to articles also having tag best mobile phone deals">best mobile phone deals</a>
-                                                                    <a href="/blogs/news/tagged/mobile-phone-deals" title="Narrow search to articles also having tag mobile phone deals">mobile phone deals</a>
-                                                                    </div><div class="date-published">Jan 11, 2018</div>
-                                                                            <h2 class="post-title">
-                                                                                <a href="/blogs/news/best-mobile-phone-deals-2018">Best Mobile Phone Deals 2018</a>
-                                                                            </h2>
-                                                                            <div class="post-description">Do you want a mobile phone that has top functionality and good looks with an affordable price tag attached to...
-                                                                    </div>
-                                                                            <a href="best-mobile/" class="button-more btn--secondary-accent">Read more</a>
-                                                                            </div>       
-                                                            </div>
-                                                            <div class="post">
-                                                                            <div class="post-content"><div class="post-media">
-                                                                                <img width="80%" src="../static/imgs/1 (7).jpg">
-            
-                                                                                <!-- <img alt="frustrated UK internet users speed up." class="lazyload" src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' data-src="//cdn.shopify.com/s/files/1/1852/8453/articles/frustrated_1200x679_crop_top.jpg?v=1521244193" /> -->
-                                                                            </div><div class="tags"><a href="/blogs/news/tagged/british-investment-opportunties" title="Narrow search to articles also having tag british investment opportunties">british investment opportunties</a>
-                                                                    <a href="/blogs/news/tagged/business-investment" title="Narrow search to articles also having tag business investment">business investment</a>
-                                                                    </div><div class="date-published">Dec 23, 2017</div>
-                                                                            <h2 class="post-title">
-                                                                                <a href="/blogs/news/frustrated-uk-internet-users-speed-up">frustrated UK internet users speed up.</a>
-                                                                            </h2>
-                                                                            <div class="post-description"><h3 style="display: block; margin: 0; padding: 0; color: #444444; font-family: Helvetica; font-size: 22px; font-style: normal; font-weight: bold; line-height: 150%; letter-spacing: normal; text-align: left;"><span style="font-size: 14px;">Considering the technological advancements Great Britain is still only position 31 in the world when it comes to internet speed.</span></h3>
-                                                                    </div>
-                                                                            <a href="frustrated-uk/" class="button-more btn--secondary-accent">Read more</a>
-                                                                            </div>       
-                                                            </div>
-                                                            <div class="post">
-                                                                            <div class="post-content"><div class="post-media">
-                                                                                <img width="80%" src="../static/imgs/1 (3).jpg">
-                                                                                <!-- <img alt="2017 Investment opportunity from Ziegal Ltd" class="lazyload" src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' data-src="//cdn.shopify.com/s/files/1/1852/8453/articles/wifi_1200x679_crop_top.jpg?v=1546864856" /> -->
-                                                                            </div><div class="tags"><a href="/blogs/news/tagged/british-investment-opportunties" title="Narrow search to articles also having tag british investment opportunties">british investment opportunties</a>
-                                                                    <a href="/blogs/news/tagged/business-investment" title="Narrow search to articles also having tag business investment">business investment</a>
-                                                                    </div><div class="date-published">Sep 30, 2017</div>
-                                                                            <h2 class="post-title">
-                                                                                <a href="/blogs/news/2017-investment-opportunity-from-ziegal-ltd">2017 Investment opportunity from Ziegal Ltd</a>
-                                                                            </h2>
-                                                                            <div class="post-description">  Ziegal Ltd want to revolutionize the UK’s Broadband market by massively increasing the internet speeds available across the country....
-                                                                    </div>
-                                                                            <a href="investment/" class="button-more btn--secondary-accent">Read more</a>
-                                                                            </div>       
-                                                            </div>
+                                                            {% endfor %}
+                                                            
                                                                         
                                                         </div>
                                                                         
@@ -216,11 +84,11 @@
             
                                                                     <div id="sidebar" class="col-md-3 col-sm-12">
                                                                         <div class="box blog-module blog-popular-posts box-no-advanced">
-                                                                            <div class="box-heading">Recent Posts</div>
-                                                                                    <div class="strip-line"></div>
+                                                                            <div class="box-heading"><h3>Recent Posts</h3></div>
+                                                                                    <div class="strip-line"></div><br><br>
                                                                                         <div class="box-content box-popular-posts">
                                                                                                     <ul class="blog-list-default">
-                                                                                                        <li>
+                                                                                                        <!-- <li> -->
                                                                                                         <div class="media">
                                                                                                             <a href="/blogs/news/wifi-extender-booster-could-it-boost-or-extend-your-wireless-signal"><div class="thumb-holder">
                                                                                                                 <img alt="WiFi extender booster could it boost or extend your wireless signal?" src="//cdn.shopify.com/s/files/1/1852/8453/articles/Wifi_extender_booster_100x130_crop_top.jpg?v=1610386321" />
@@ -230,8 +98,8 @@
                                                                                                             </div>
                                                                                                             </a>
                                                                                                         </div>
-                                                                                                        </li>
-                                                                                                        <li>
+                                                                                                        <!-- </li> -->
+                                                                                                        <!-- <li> -->
                                                                                                         <div class="media">
                                                                                                             <a href="/blogs/news/argos-mobile-phone-alternatives"><div class="thumb-holder">
                                                                                                                 <img alt="Argos mobile phone alternatives from Ziegal starting from just £99" src="//cdn.shopify.com/s/files/1/1852/8453/articles/argos_mobile_phone_alternative_100x130_crop_top.jpg?v=1546872183" />
@@ -241,8 +109,8 @@
                                                                                                             </div>
                                                                                                             </a>
                                                                                                         </div>
-                                                                                                        </li>
-                                                                                                        <li>
+                                                                                                        <!-- </li> -->
+                                                                                                        <!-- <li> -->
                                                                                                         <div class="media">
                                                                                                             <a href="/blogs/news/privacy-settings-on-your-android-mobile-phone-you-should-consider-changing"><div class="thumb-holder">
                                                                                                                 <img alt="Privacy settings on your android mobile phone you should consider changing." src="//cdn.shopify.com/s/files/1/1852/8453/articles/mobile_phone_privacy_100x130_crop_top.jpg?v=1528414458" />
@@ -252,7 +120,7 @@
                                                                                                             </div>
                                                                                                             </a>
                                                                                                         </div>
-                                                                                                        </li>
+                                                                                                        <!-- </li> -->
                                                                                                     </ul>
                                                                                         </div>
                                                                         </div>
@@ -278,89 +146,23 @@
             </div>
             
 
-        {% endfor %}
+
+
+
+
+
+        
+        
 
     </div>
 
-    <!-- <div class="pattern">
-        <div class="page-width">    
-<div class="container px-2 pb-5">
-  <div class="row">    
-    <div class="center-column content-with-background blog-page col-md-9 col-sm-12">
-        <div class="posts">
-        
-        <img src="../static/imgs/wifi.jpg">
-        <h2 class="post-title">
-             WiFi extender booster could it boost or extend your wireless signal?
-        </h2>
-        <p>
-            Do WiFi booster's actually work? Will it extend your WiFi signal? This article explains exactly how to install and extend your WiFi signal using a plug in booster.
-        </p>
-
-        <img src="../static/imgs/mob1.jpg">
-
-        <h2>
-            Argos mobile phone alternatives from Ziegal starting from just £99
-        </h2>
-        <p>
-            The article compares the argos mobile phone range to some of our mobile devices which are unlocked to any network and with dual sim capabilities.
-        </p>
-
-        <img src="../static/imgs/1.jpg">
-
-        <h2>
-            Privacy settings on your android mobile phone you should consider changing.  
-        </h2>
-        <p>
-            Recently we have witnessed a rapid advancement of technology in different areas of life, technology has been seen as something...        </p>
-        <img src="../static/imgs/1 (5).jpg">
-
-        <h2>
-            The Best Smartphone? - Android vs iPhone        </h2>
-        <p>
-            When it comes to purchasing the best mobile phone deal, it is rational to explore the options available to you....        </p>
-
-      <img src="../static/imgs/1 (2).jpg">
-
-        <h2>
-            Risks of Using Your Smartphone at Night        </h2>
-        <p>
-            The smartphone has become an integral part of the modern individual. I mean, it’s virtually impossible to function without one....        </p>
-       
-        <img src="../static/imgs/1 (8).jpg">
-        <h2>
-            Best Battery Life Smartphones        </h2>
-        <p>
-            3 Of The Best Battery Life Mobile Phones Your phone battery is like the heart of your beloved device, pumping...        </p>
-        <img src="../static/imgs/1 (6).JPG">
-
-        <h2>
-            Best Mobile Phone Deals 2018        </h2>
-        <p>
-            Do you want a mobile phone that has top functionality and good looks with an affordable price tag attached to...        </p>
-        <img src="../static/imgs/1 (7).jpg">
-
-        <h2>
-            frustrated UK internet users speed up.        </h2>
-        <p>
-            Considering the technological advancements Great Britain is still only position 31 in the world when it comes to internet speed.        </p>
-        <img src="../static/imgs/1 (3).jpg">
-
-        <h2>
-            2017 Investment opportunity from Ziegal Ltd
-        </h2>
-        <p>
-            Ziegal Ltd want to revolutionize the UK’s Broadband market by massively increasing the internet speeds available across the country....        </p>
-
-        </div> -->
-
-
-        
-
-
-
 
     
+
+
+
+
+   
 
 
     {% include 'inc/footer.html' %}

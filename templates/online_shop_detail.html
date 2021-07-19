@@ -3,6 +3,73 @@
 {% block head2 %}
 	<title>{{ detail.meta_title }}</title>
 	<meta name="{{ detail.meta_name }}" content="{{ detail.meta_description }}">
+<style>
+    body{margin-top:20px;}
+
+.align-center {
+    text-align: center;
+}
+.hash-list {
+    display: block;
+    padding: 0;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px){
+    .hash-list.cols-3 > li:nth-last-child(-n+3) {
+        border-bottom: none;
+    }
+}
+@media (min-width: 768px){
+    .hash-list.cols-3 > li {
+        width: 33.3333%;
+    }
+}
+.hash-list > li {
+    display: block;
+    float: left;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.pad-30, .pad-30-all > * {
+    padding: 30px;
+}
+img {
+    border: 0;
+}
+.mgb-20, .mgb-20-all > * {
+    margin-bottom: 20px;
+}
+.wpx-100, .wpx-100-after:after {
+    width: 100px;
+}
+.img-round, .img-rel-round {
+    border-radius: 50%;
+}
+.padb-30, .padb-30-all > * {
+    padding-bottom: 30px;
+}
+
+.mgb-40, .mgb-40-all > * {
+    margin-bottom: 40px;
+}
+.align-center {
+    text-align: center;
+}
+[class*="line-b"] {
+    position: relative;
+    padding-bottom: 20px;
+    border-color: #E6AF2A;
+}
+.fg-text-d, .fg-hov-text-d:hover, .fg-active-text-d.active {
+    color: #222;
+}
+.font-cond-b {
+    font-weight: 700 !important;
+}
+</style>
+   
+
 {% endblock %}
 
 {% block body %}
@@ -40,7 +107,8 @@
                 <div class="p-3 border my-2">
                     <p class="px-3 py-1 m-0" style="background-color: pink;display: inline-block;border-radius: 6px;font-weight: 700">Klarna.</p>
                     <p style="display: inline-block" class="m-0">Make 3 payments of £66.33. No fees</p>
-                    <a href="" class="default_a">Learn more</a>
+                    <a href="https://shop.ee.co.uk/benefits?mchannel=PZ&WT.mc_id=ON_MEC_A_PZ_ziegal&clickref=1101lhjimHv2&WT.tsrc=Affiliate&dclid=CPeY0_fb7vECFQ2ZhQodOUkGI"
+                     class="default_a">Learn more</a>
 
                 </div>
                 <h4 id="color">Color: </h4>
@@ -60,18 +128,55 @@
 
     </div>
 
-        <div class="text-center">
+        <div class="">
             <h2>Description</h2>
             <p>{{ detail.features|safe }}</p>
         </div>
         <div>
-            <h2>Reviews</h2>
+            <!-- <h2>Reviews</h2> -->
 {#            {% for item in review %}#}
 {#            <p>{{ item.user.username }}</p>#}
 {#            <p>{{ item.comment }}</p>#}
 {#            <p>{{ item.rating }}</p>#}
 {#            {% endfor %}#}
+
+
+
+                                        <div class="">
+                                            <div class="mgb-40 padb-30 auto-invert line-b-4 align-center">
+                                                <h4 class="font-cond-l fg-accent lts-md mgb-10" contenteditable="false">Not Yet Convinced?</h4>
+                                                <h1 class="font-cond-b fg-text-d lts-md fs-300 fs-300-xs no-mg" contenteditable="false">Read Customer Reviews</h1>
+                                            </div>
+                                            <ul class="hash-list cols-3 cols-1-xs pad-30-all align-center text-sm">
+                                                <li>
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
+                                                <p class="fs-110 font-cond-l" contenteditable="false">" I can say that the phone speed is very good and camera is compared to the price of the camera. The chassis looks really nice and stylish. A good phone charge can last 2 days. Very good features compared to its price. Would definitely recommend. "</p>
+                                                <h5 class="font-cond mgb-5 fg-text-d fs-130" contenteditable="false">Martha Stewart</h5>
+                                                <small class="font-cond case-u lts-sm fs-80 fg-text-l" contenteditable="false">Business Man - New York</small>
+                                                </li>
+                                                <li>
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar4.png" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
+                                                <p class="fs-110 font-cond-l" contenteditable="false">" It never lags behind in terms of both speed and camera performance. Also, the sound is quite loud, big screen with very good resolution. Overall a good package. Fast and free delivery. "</p>
+                                                <h5 class="font-cond mgb-5 fg-text-d fs-130" contenteditable="false">Ariana Menage</h5>
+                                                <small class="font-cond case-u lts-sm fs-80 fg-text-l" contenteditable="false">Recording Artist - Los Angeles</small>
+                                                </li>
+                                                <li>
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar5.png" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
+                                                <p class="fs-110 font-cond-l" contenteditable="false">" I was previously using GM 9 pro and I was very glad. I bought Gm 20 pro for my wife and received it today. My wife really liked it and phone takes excellent quality pictures. "</p>
+                                                <h5 class="font-cond mgb-5 fg-text-d fs-130" contenteditable="false">Sean Carter</h5>
+                                                <small class="font-cond case-u lts-sm fs-80 fg-text-l" contenteditable="false">Fund Manager - Chicago</small>
+                                                </li>
+                                            </ul>
+                                        </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+
+
+
+
         </div>
+        
     </div>
 
     <div style="position: fixed;bottom: -10%;left: 45%;transition: all 0.7s ease-in-out" class="text-white" id="sign">

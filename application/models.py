@@ -52,6 +52,7 @@ class Product(models.Model):
     meta_name = models.CharField(max_length=255, default='description')
     meta_description = models.TextField(default='description')
     slug = models.SlugField(max_length=255, default='slug')
+    # learn_more = models.TextField(blank=True,null=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -62,7 +63,10 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse_lazy('detail-online-shop', kwargs={'slug': self.slug, 'pk': self.pk})
-
+    
+    def no_of_rating(self):
+        ratings = Rating.objects.filter(product=self)
+        return len(ratings)
 
 class Cart(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -204,13 +208,8 @@ class MetaInfo(models.Model):
     terms_name = models.CharField(max_length=255, default='description')
     terms_description = models.TextField(default='description')
 
-    # wifi_title = models.CharField(max_length=255, default='description')
-    # wifi_name = models.CharField(max_length=255, default='description')
-    # wifi_description = models.TextField(default='description')
+   
     
-
-
-
     def __str__(self):
         return 'Meta info'
 
@@ -230,5 +229,3 @@ class Contact(models.Model):
     desc = models.TextField()  
 
 
-# class wifi_extender(models.Model):
-#     name=models.CharField(max_length=30)

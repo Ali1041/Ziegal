@@ -12,3 +12,5 @@ admin.site.register(MetaInfo)
 admin.site.register(Blog)
 admin.site.register(Newsletter)
 admin.site.register(Contact)
+
+admin.site.register(Rating)
