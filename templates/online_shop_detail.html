@@ -132,57 +132,70 @@ img {
             <h2>Description</h2>
             <p>{{ detail.features|safe }}</p>
         </div>
-        <div>
+        <div class="my-5">
             <!-- <h2>Reviews</h2> -->
-{#            {% for item in review %}#}
-{#            <p>{{ item.user.username }}</p>#}
-{#            <p>{{ item.comment }}</p>#}
-{#            <p>{{ item.rating }}</p>#}
-{#            {% endfor %}#}
-
-
-
-                                        <div class="">
-                                            <div class="mgb-40 padb-30 auto-invert line-b-4 align-center">
-                                                <h4 class="font-cond-l fg-accent lts-md mgb-10" contenteditable="false">Not Yet Convinced?</h4>
-                                                <h1 class="font-cond-b fg-text-d lts-md fs-300 fs-300-xs no-mg" contenteditable="false">Read Customer Reviews</h1>
-                                            </div>
-                                            <ul class="hash-list cols-3 cols-1-xs pad-30-all align-center text-sm">
-                                                <li>
-                                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
-                                                <p class="fs-110 font-cond-l" contenteditable="false">" I can say that the phone speed is very good and camera is compared to the price of the camera. The chassis looks really nice and stylish. A good phone charge can last 2 days. Very good features compared to its price. Would definitely recommend. "</p>
-                                                <h5 class="font-cond mgb-5 fg-text-d fs-130" contenteditable="false">Martha Stewart</h5>
-                                                <small class="font-cond case-u lts-sm fs-80 fg-text-l" contenteditable="false">Business Man - New York</small>
-                                                </li>
-                                                <li>
-                                                <img src="https://bootdey.com/img/Content/avatar/avatar4.png" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
-                                                <p class="fs-110 font-cond-l" contenteditable="false">" It never lags behind in terms of both speed and camera performance. Also, the sound is quite loud, big screen with very good resolution. Overall a good package. Fast and free delivery. "</p>
-                                                <h5 class="font-cond mgb-5 fg-text-d fs-130" contenteditable="false">Ariana Menage</h5>
-                                                <small class="font-cond case-u lts-sm fs-80 fg-text-l" contenteditable="false">Recording Artist - Los Angeles</small>
-                                                </li>
-                                                <li>
-                                                <img src="https://bootdey.com/img/Content/avatar/avatar5.png" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
-                                                <p class="fs-110 font-cond-l" contenteditable="false">" I was previously using GM 9 pro and I was very glad. I bought Gm 20 pro for my wife and received it today. My wife really liked it and phone takes excellent quality pictures. "</p>
-                                                <h5 class="font-cond mgb-5 fg-text-d fs-130" contenteditable="false">Sean Carter</h5>
-                                                <small class="font-cond case-u lts-sm fs-80 fg-text-l" contenteditable="false">Fund Manager - Chicago</small>
-                                                </li>
-                                            </ul>
-                                        </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
 
 
-
-
+            <div class="py-5">
+                <div class="mgb-40 padb-30 auto-invert line-b-4 align-center">
+                    <h4 class="font-cond-l fg-accent lts-md mgb-10" contenteditable="false">Not Yet Convinced?</h4>
+                    <h1 class="font-cond-b fg-text-d lts-md fs-300 fs-300-xs no-mg" contenteditable="false">Read Customer Reviews</h1>
+                </div>
+                <ul class="row m-0 ">
+                    {% for item in review %}
+                    <li class="col-lg-3 border-right text-center">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="wpx-100 img-round mgb-20" title="" alt="" data-edit="false" data-editor="field" data-field="src[Image Path]; title[Image Title]; alt[Image Alternate Text]">
+                    <p class="" contenteditable="false">"{{ item.comment }}"</p>
+                    <h5 class="" contenteditable="false">{{ item.user.username }}</h5>
+                    <small class="" contenteditable="false">{{ item.rating }}/5</small>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
 
         </div>
-        
+        <div class="text-center my-2">
+	        <button class="btn btn-dark" data-toggle="modal" data-target="#reviewModal">Add a review</button>
+        </div>
     </div>
 
     <div style="position: fixed;bottom: -10%;left: 45%;transition: all 0.7s ease-in-out" class="text-white" id="sign">
         <p class="bg-dark px-2 p-1 " style="border-radius: 6px">Added to cart!</p>
     </div>
     {% include 'inc/footer.html' %}
+
+	<div class="modal fade" id="reviewModal">
+		<div class="modal-dialog" tabindex="-1">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4>Add a review</h4>
+				</div>
+				<div class="modal-body">
+					<form action="{% url 'rating' %}" method="POST" >{% csrf_token %}
+						<div>
+							<label for="comment">Comment</label>
+							<textarea id="comment" name="comment" required cols="5" rows="5" class="form-control" placeholder="Comment"></textarea>
+						</div>
+
+						<div class="my-3">
+							<label for="rating">Rating</label>
+							<input type="number" min="1" name="rating" max="5" step="any" required id="rating" placeholder="Rating out of 5" class="form-control">
+						</div>
+						<input type="text" value="{{ detail.pk }}" hidden name="product_id">
+						<input type="text" value="{{ detail.slug }}" hidden name="product_slug">
+						<button class="text-right btn btn-dark " type="submit">Submit</button>
+					</form>
+
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
 
 {% endblock %}
 
