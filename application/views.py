@@ -66,9 +66,8 @@ def login(request):
 def newsletter_subscribe(request, **kwargs):
     data = json.loads(request.body)
     if not '@' in data['email']:
-        return JsonResponse({'msg':'Enter a valid Email'})
+        return JsonResponse({'msg': 'Enter a valid Email'})
     newsletter_instance = Newsletter.objects.filter(email__iexact=data['email'])
-
 
     if newsletter_instance:
         return JsonResponse({'msg': 'You are already subscribed to our list. Thank you!'})
@@ -101,7 +100,7 @@ def dual_sims(request):
     ctx['name'] = meta.dual_sim_name
     ctx['description'] = meta.dual_sim_description
     ctx['title'] = meta.dual_sim_title
-    return render(request, 'dual_sims.html',ctx)
+    return render(request, 'dual_sims.html', ctx)
 
 
 # monthly deals page
@@ -111,7 +110,7 @@ def monthly_deals(request):
     ctx['name'] = meta.monthly_deals_name
     ctx['description'] = meta.monthly_deals_description
     ctx['title'] = meta.monthly_deals_title
-    return render(request, 'monthly_deals.html',ctx)
+    return render(request, 'monthly_deals.html', ctx)
 
 
 # online shop page
@@ -138,7 +137,7 @@ class DetailProduct(generic.DetailView):
     def get_context_data(self, **kwargs):
         ctx = super(DetailProduct, self).get_context_data(**kwargs)
         product_instance = self.get_queryset()
-        ctx['review'] = Rating.objects.select_related('product').filter(product=product_instance)
+        ctx['review'] = Rating.objects.select_related('product').filter(product=product_instance[0], status=True)
         ctx['count'] = json.loads(count(self.request).content)['count']
         return ctx
 
@@ -177,7 +176,7 @@ def broadband_deals(request):
     ctx['name'] = meta.broadband_name
     ctx['description'] = meta.broadband_description
     ctx['title'] = meta.broadband_title
-    return render(request, 'broadband_deals.html',ctx)
+    return render(request, 'broadband_deals.html', ctx)
 
 
 #  z-wifi page
@@ -190,9 +189,6 @@ def z_wifi(request):
     return render(request, 'z_wifi.html', ctx)
 
 
-    
-
-
 # search page
 def search(request, **kwargs):
     query_item = Product.objects.prefetch_related('product_img', 'category').filter(
@@ -203,7 +199,7 @@ def search(request, **kwargs):
     ctx['title'] = meta.mission_title
     ctx['name'] = meta.mission_name
     ctx['description'] = meta.mission_description
-    return render(request, 'search.html',ctx )
+    return render(request, 'search.html', ctx)
 
 
 # add to cart
@@ -308,12 +304,12 @@ def blog_list(request):
     # ctx['title'] = meta.blog_title
     ctx['name'] = meta.blog_name
     ctx['description'] = meta.blog_description
-    return render(request, 'blog_list.html',ctx)
+    return render(request, 'blog_list.html', ctx)
 
 
 def blog_detail(request, **kwargs):
     ctx = {'count': json.loads(count(request).content)['count'], 'detail': Blog.objects.get(pk=kwargs['pk'])}
- 
+
     return render(request, 'blog_detail.html', ctx)
 
 
@@ -341,15 +337,14 @@ def terms_condition(request):
     ctx['title'] = meta.terms_title
     ctx['name'] = meta.terms_name
     ctx['description'] = meta.terms_description
-    return render(request, 'terms_condition.html',ctx)
-
+    return render(request, 'terms_condition.html', ctx)
 
 
 def contact(request):
-    if request.method=="POST":
+    if request.method == "POST":
         name = request.POST['name']
-        email=request.POST['email']
-        desc=request.POST['desc']
+        email = request.POST['email']
+        desc = request.POST['desc']
         # print(name, email, desc)
 
         ins = Contact(name=name, email=email, desc=desc)
@@ -365,39 +360,55 @@ def contact(request):
 
         #     )
 
+    return render(request, 'contact.html')
 
-    return render(request,'contact.html')
+
+def add_rating(request):
+    if request.method == 'POST':
+        Rating.objects.create(user=request.user, comment=request.POST['comment'], rating=request.POST['rating'],
+                              status=True, product=Product.objects.get(pk=request.POST['product_id']))
+        return redirect('detail-online-shop', slug=request.POST['product_slug'], pk=request.POST['product_id'])
+
 
 # def mobile_broadband(request):
 #     return render(request,'mobile_broadband')
 
+
+# todo: Remove all the unnecessary functions
 def wifi(request):
-    return render(request,'wifi.html')
+    return render(request, 'wifi.html')
+
 
 def argos_mobile(request):
-    return render(request,'argos_mobile.html')
+    return render(request, 'argos_mobile.html')
+
 
 def privacy_blog(request):
-    return render(request,'privacy_blog.html')
+    return render(request, 'privacy_blog.html')
+
 
 def best_smartphone(request):
-    return render(request,'best_smartphone.html')
+    return render(request, 'best_smartphone.html')
+
 
 def risks_blog(request):
-    return render(request,'risks_blog.html')
+    return render(request, 'risks_blog.html')
+
 
 def best_battery(request):
-    return render(request,'best_battery.html')
+    return render(request, 'best_battery.html')
+
 
 def best_mobile(request):
-    return render(request,'best_mobile.html')
+    return render(request, 'best_mobile.html')
+
 
 def frustrated_uk(request):
-    return render(request,'frustrated_uk.html')
+    return render(request, 'frustrated_uk.html')
+
 
 def investment(request):
-    return render(request,'investment.html')
-
+    return render(request, 'investment.html')
 
 # def  wifi(request):
 #     ctx = {'count': json.loads(count(request).content)['count']}
@@ -406,10 +417,6 @@ def investment(request):
 #     ctx['name'] = meta.mission_name
 #     ctx['description'] = meta.mission_description
 #     return render(request, 'wifi_extender.html')
-
-
-
-
 
 
 # def rating(request):
@@ -421,15 +428,15 @@ def investment(request):
 #             dict[line.product.productName] = (dict[line.product.productName] + line.rating)/2
 #         else:
 #             dict.update({line.product.productName:line.rating})
-    
-#     return render(request,'review.html',{'product':product})
-    #  if request.method=="Get":
-    #     product = request.GET['product']
-    #     rating=request.GET['rating']
-    #     user=request.GET['user']
-    #     comment=request.GET['comment']
-    #     # print(name, email, desc)
 
-    #     ins = rating(product=product,rating=rating,user=user,comment=comment)
-    #     ins.save()
-    #     print("the data has been written to the db")
+#     return render(request,'review.html',{'product':product})
+#  if request.method=="Get":
+#     product = request.GET['product']
+#     rating=request.GET['rating']
+#     user=request.GET['user']
+#     comment=request.GET['comment']
+#     # print(name, email, desc)
+
+#     ins = rating(product=product,rating=rating,user=user,comment=comment)
+#     ins.save()
+#     print("the data has been written to the db")

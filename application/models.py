@@ -139,6 +139,7 @@ class Rating(models.Model):
     rating = models.FloatField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     comment = models.TextField()
+    status = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.user.username} comment'

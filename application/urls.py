@@ -33,7 +33,7 @@ urlpatterns = [
 
     # online shop url
     path('online-shop/',online_shop,name='online-shop'),
-    path('online-shop<slug:slug>/<int:pk>/',DetailProduct.as_view(),name='detail-online-shop'),
+    path('online-shop/<slug:slug>/<int:pk>/',DetailProduct.as_view(),name='detail-online-shop'),
 
     # z_wifi url
     path('z-wifi/',z_wifi,name='z-wifi'),
@@ -68,17 +68,17 @@ urlpatterns = [
     path('blog-list/',blog_list,name='blog-list'),
     path('blog-detail/<slug:slug>/<int:pk>/',blog_detail,name='blog-detail'),
 
-    path('blog-list/wifi/',wifi,name='wifi'),
-    path('blog-list/argos-mobile/',argos_mobile,name='argos-mobile'),
-    path('blog-list/privacy-blog/',privacy_blog,name='privacy-blog'),
-    path('blog-list/best-smartphone/',best_smartphone,name='best-smartphone'),
-    path('blog-list/risks-blog/',risks_blog,name='risks-blog'),
-    path('blog-list/best-battery/',best_battery,name='best-battery'),
-    path('blog-list/best-mobile/',best_mobile,name='best-mobile'),
-    path('blog-list/frustrated-uk/',frustrated_uk,name='frustrated-uk'),
-    path('blog-list/investment/',investment,name='investment'),
+    # path('blog-list/wifi/',wifi,name='wifi'),
+    # path('blog-list/argos-mobile/',argos_mobile,name='argos-mobile'),
+    # path('blog-list/privacy-blog/',privacy_blog,name='privacy-blog'),
+    # path('blog-list/best-smartphone/',best_smartphone,name='best-smartphone'),
+    # path('blog-list/risks-blog/',risks_blog,name='risks-blog'),
+    # path('blog-list/best-battery/',best_battery,name='best-battery'),
+    # path('blog-list/best-mobile/',best_mobile,name='best-mobile'),
+    # path('blog-list/frustrated-uk/',frustrated_uk,name='frustrated-uk'),
+    # path('blog-list/investment/',investment,name='investment'),
 
-    # path("rating/",rating,name="rating"),
+    path("rating/",add_rating,name="rating"),
 
 
 
